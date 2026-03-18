@@ -10,7 +10,6 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url = env(DATABASE_URL)
 }
 
 model User {
@@ -38,7 +37,7 @@ model Quote{
   page Int?
   bookId Int
   book Book @relation(fields: [bookId], references: [id])
-  createdAt DateTime(now())
+  createdAt DateTime @default(now())
 }
 
 enum BookStatus{

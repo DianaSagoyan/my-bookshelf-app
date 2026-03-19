@@ -9,6 +9,8 @@ export const createBook = async (req, res) => {
       data: {
         title,
         author,
+        readStatus,
+        userId,
       },
     });
 

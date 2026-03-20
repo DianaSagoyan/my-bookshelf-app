@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import { prisma } from "../lib/prisma";
+import express from "express";
+import { prisma } from "../lib/prisma.ts";
 
 export const createBook = async (req, res) => {
   try {

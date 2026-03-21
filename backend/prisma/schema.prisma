@@ -14,7 +14,7 @@ datasource db {
 
 model User {
   id    Int @id @default(autoincrement())
-  emil  String  @unique
+  email  String  @unique
   password  String
   books Book[]
   createdAt DateTime @default(now())
@@ -24,6 +24,8 @@ model Book{
   id  Int @id @default(autoincrement())
   title   String
   author  String
+  genre   String?
+  description   String?
   status BookStatus
   userId Int
   user User @relation(fields: [userId], references: [id])

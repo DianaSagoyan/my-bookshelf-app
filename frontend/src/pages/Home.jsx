@@ -4,8 +4,17 @@ import BookImages from "../components/book-images";
 import Card from "../components/card";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
+import { useEffect, useState } from "react";
 
-function App() {
+function Home() {
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/`)
+      .then((res) => res.text())
+      .then((data) => setMessage(data));
+  }, []);
+
   return (
     <div className="App">
       <head>
@@ -14,7 +23,7 @@ function App() {
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
-          crossorigin
+          crossOrigin
         ></link>
         <link
           href="https://fonts.googleapis.com/css2?family=Italiana&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -22,11 +31,13 @@ function App() {
         ></link>
       </head>
 
+      <p>{message}</p>
+
       <Navbar />
       <Intro />
       <BookImages />
 
-      <section class="cards">
+      <section className="cards">
         <Card />
         <Card />
         <Card />
@@ -37,4 +48,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;

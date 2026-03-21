@@ -43,3 +43,19 @@ export const createBook = async (req, res) => {
     res.status(500).json({ error: "Something went wrong" });
   }
 };
+
+export const updateBook = async (req, res) => {
+  try {
+    const id = req.params;
+    const { title, author, genre, description, status } = req.body;
+
+    const book = prisma.book.update({
+      where: { id: id },
+      data: { title, author, genre, description, status },
+    });
+
+    res.status(200).json(book);
+  } catch (error) {
+    res.status(500).json({ error: "Something went wrong" });
+  }
+};

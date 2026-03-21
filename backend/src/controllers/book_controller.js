@@ -4,7 +4,7 @@ import { error } from "node:console";
 
 export const getBooks = async (req, res) => {
   try {
-    const books = prisma.book.findMany();
+    const books = await prisma.book.findMany();
     res.status(200).json(books);
   } catch (error) {
     res.status(500).json({ error: "Something went wrong" });
@@ -13,7 +13,7 @@ export const getBooks = async (req, res) => {
 
 export const getBook = async (req, res) => {
   try {
-    const book = prisma.book.findUnique({
+    const book = await prisma.book.findUnique({
       where: { id: parseInt(id) },
     });
 
@@ -49,12 +49,25 @@ export const updateBook = async (req, res) => {
     const id = req.params;
     const { title, author, genre, description, status } = req.body;
 
-    const book = prisma.book.update({
-      where: { id: id },
+    const book = await prisma.book.update({
+      where: { id: parseInt(id) },
       data: { title, author, genre, description, status },
     });
 
     res.status(200).json(book);
+  } catch (error) {
+    res.status(500).json({ error: "Something went wrong" });
+  }
+};
+
+export const deleteBook = async (req, res) => {
+  try {
+    const id = req.params;
+    const book = await prisma.book.delete({
+      where: { id: parseInt(id) },
+    });
+
+    res.status(200).json({ message: "Book deleted successfully!" });
   } catch (error) {
     res.status(500).json({ error: "Something went wrong" });
   }

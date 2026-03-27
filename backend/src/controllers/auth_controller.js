@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { prisma } from "../lib/prisma.js";
 import { error } from "node:console";
+import { use } from "react";
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -25,6 +26,28 @@ export const register = async (req, res) => {
       expiresIn: "7d",
     });
     res.status(201).json({ token, userId: user.id });
+  } catch (error) {
+    res.status(500).json({ error: "Something went wrong" });
+  }
+};
+
+//LOGIN
+export const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const user = await prisma.user.findUnique({ where: { email } });
+
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(401).json({ error: "Wrong credentials" });
+
+    const token = jwt.sign({ userId: user.id }, JWT_SECRET, {
+      expiresIn: "7d",
+    });
+
+    res.status(200).json({token, {userId: user.id}});
   } catch (error) {
     res.status(500).json({ error: "Something went wrong" });
   }

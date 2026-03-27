@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import bookRoutes from "./routes/book_routes.js";
+import authRoutes from "./routes/auth_routes.js";
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.get("/", (req, res) => {
   res.send("Bookshelf");
 });
 
+app.use(authRoutes);
 app.use(bookRoutes);
 
 const port = process.env.PORT || 5000;

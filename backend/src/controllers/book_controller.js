@@ -4,7 +4,7 @@ import { error } from "node:console";
 
 export const getBooks = async (req, res) => {
   try {
-    const books = await prisma.book.findMany();
+    const books = await prisma.book.findMany({ where: { userId: req.userId } });
     res.status(200).json(books);
   } catch (error) {
     res.status(500).json({ error: "Something went wrong" });

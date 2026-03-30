@@ -34,7 +34,7 @@ export const createBook = async (req, res) => {
         genre,
         description,
         status,
-        userId,
+        userId: req.userId,
       },
     });
 

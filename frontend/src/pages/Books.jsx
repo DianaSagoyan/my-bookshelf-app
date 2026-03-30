@@ -19,9 +19,12 @@ function Books() {
   const [showModal, setShowModal] = useState(false);
   const [editBook, setEditBook] = useState(null);
   const [form, setForm] = useState(emptyForm);
+  const token = localStorage.getItem("token");
 
   const fetchBooks = () => {
-    fetch(`${import.meta.env.VITE_API_URL}/books`)
+    fetch(`${import.meta.env.VITE_API_URL}/books`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
       .then((res) => res.json())
       .then((data) => {
         setBooks(data);
@@ -67,11 +70,15 @@ function Books() {
     const url = editBook
       ? `${import.meta.env.VITE_API_URL}/books/${editBook.id}`
       : `${import.meta.env.VITE_API_URL}/books`;
+    const token = localStorage.getItem("token");
 
     try {
       const res = await fetch(url, {
         method,
-        headers: { "Content-type": "application.json" },
+        headers: {
+          "Content-type": "application.json",
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify({ ...form, userId: 1 }),
       });
       const data = await res.json();
@@ -92,6 +99,7 @@ function Books() {
     try {
       await fetch(`${import.meta.env.VITE_API_URL}/books/${id}`, {
         method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
       });
       setBooks(books.filter((b) => b.id !== id));
     } catch (err) {

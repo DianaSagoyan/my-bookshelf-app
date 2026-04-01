@@ -36,7 +36,11 @@ function Books() {
       });
   };
 
-  useEffect(() => fetchBooks(), []);
+  useEffect(
+    () => fetchBooks(),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -72,14 +76,17 @@ function Books() {
       : `${import.meta.env.VITE_API_URL}/books`;
     const token = localStorage.getItem("token");
 
+    console.log("Token:", token); // add this
+    console.log("Form:", form); // add this
+
     try {
       const res = await fetch(url, {
         method,
         headers: {
-          "Content-type": "application.json",
+          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ ...form, userId: 1 }),
+        body: JSON.stringify(form),
       });
       const data = await res.json();
 

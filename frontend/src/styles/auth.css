@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.auth {
+  min-height: 100vh;
+  /* background-color: #2c3930; */
+}
+
+.auth::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("../images/background.png") no-repeat center top / cover;
+  opacity: 0.1; /* transparency of the books image */
+  z-index: 0;
+  background-position: center -70px;
+}
+
+.auth h1 {
+  opacity: 1;
+  color: #f08d39;
+}
+
+.auth_box {
+  /* justify-content: center; */
+  /* text-align: center; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth p a {
+  color: black;
+}

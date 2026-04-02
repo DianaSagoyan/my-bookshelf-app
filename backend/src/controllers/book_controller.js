@@ -1,6 +1,6 @@
 import express from "express";
 import { prisma } from "../lib/prisma.js";
-import { error } from "node:console";
+// import { error } from "node:console";
 
 export const getBooks = async (req, res) => {
   try {

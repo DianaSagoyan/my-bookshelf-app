@@ -50,7 +50,9 @@ function Register() {
           value={form.password}
           onChange={handleChange}
         />
-        <button onClick={handleSubmit}>Register</button>
+        <button className="auth_btn" onClick={handleSubmit}>
+          Register
+        </button>
         <p>
           Already have an account? <Link to="/login">Login</Link>
         </p>

@@ -50,7 +50,9 @@ function Login() {
           value={form.password}
           onChange={handleChange}
         />
-        <button onClick={handleSubmit}>Login</button>
+        <button className="auth_btn" onClick={handleSubmit}>
+          Login
+        </button>
         <p>
           Don't have an account? <Link to="/register">Register</Link>
         </p>

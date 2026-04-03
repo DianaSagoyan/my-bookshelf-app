@@ -17,8 +17,8 @@ function Books() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [showModal, setShowModal] = useState(false);
-  const [editBook, setEditBook] = useState(null);
+  // const [showModal, setShowModal] = useState(false);
+  // const [editBook, setEditBook] = useState(null);
   const [form, setForm] = useState(emptyForm);
   const token = localStorage.getItem("token");
 
@@ -47,38 +47,37 @@ function Books() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const openCreateModal = () => {
-    setEditBook(null);
-    setForm(emptyForm);
-    setShowModal(true);
-  };
+  // const openCreateModal = () => {
+  //   setEditBook(null);
+  //   setForm(emptyForm);
+  //   setShowModal(true);
+  // };
 
-  const openEditModal = (book) => {
-    setEditBook(book);
-    setForm({
-      title: book.title,
-      author: book.author,
-      genre: book.genre || "",
-      description: book.description || "",
-      status: book.status,
-    });
-  };
+  // const openEditModal = (book) => {
+  //   setEditBook(book);
+  //   setForm({
+  //     title: book.title,
+  //     author: book.author,
+  //     genre: book.genre || "",
+  //     description: book.description || "",
+  //     status: book.status,
+  //   });
+  // };
 
-  const closeModal = () => {
-    setShowModal(false);
-    setEditBook(null);
-    setForm(emptyForm);
-  };
+  // const closeModal = () => {
+  //   setShowModal(false);
+  //   setEditBook(null);
+  //   setForm(emptyForm);
+  // };
 
   const handleSubmit = async () => {
-    const method = editBook ? "PUT" : "POST";
-    const url = editBook
-      ? `${import.meta.env.VITE_API_URL}/books/${editBook.id}`
-      : `${import.meta.env.VITE_API_URL}/books`;
+    // const method = editBook ? "PUT" : "POST";
+    const method = "POST";
+    // const url = editBook
+    //   ? `${import.meta.env.VITE_API_URL}/books/${editBook.id}`
+    //   : `${import.meta.env.VITE_API_URL}/books`;
+    const url = `${import.meta.env.VITE_API_URL}/books`;
     const token = localStorage.getItem("token");
-
-    console.log("Token:", token); // add this
-    console.log("Form:", form); // add this
 
     try {
       const res = await fetch(url, {
@@ -91,29 +90,30 @@ function Books() {
       });
       const data = await res.json();
 
-      if (editBook) {
-        setBooks(books.map((b) => (b.id === editBook.id ? data : b)));
-      } else {
-        setBooks([...books, data]);
-      }
+      // if (editBook) {
+      //   setBooks(books.map((b) => (b.id === editBook.id ? data : b)));
+      // } else {
+      //   setBooks([...books, data]);
+      // }
 
-      closeModal();
+      setBooks([...books, data]);
+      // closeModal();
     } catch (err) {
       setError(err.message);
     }
   };
 
-  const handleDelete = async (id) => {
-    try {
-      await fetch(`${import.meta.env.VITE_API_URL}/books/${id}`, {
-        method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setBooks(books.filter((b) => b.id !== id));
-    } catch (err) {
-      setError(err.message);
-    }
-  };
+  // const handleDelete = async (id) => {
+  //   try {
+  //     await fetch(`${import.meta.env.VITE_API_URL}/books/${id}`, {
+  //       method: "DELETE",
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     });
+  //     setBooks(books.filter((b) => b.id !== id));
+  //   } catch (err) {
+  //     setError(err.message);
+  //   }
+  // };
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
@@ -121,9 +121,9 @@ function Books() {
   return (
     <div>
       <Navbar />
-      <h1>My Books</h1>
-      <button onClick={openCreateModal}>+ Add Book</button>
-
+      {/* <h1>My Books</h1> */}
+      {/* <button onClick={openCreateModal}>+ Add Book</button> */}
+      {/* 
       {books.length === 0 ? (
         <p>No books yet</p>
       ) : (
@@ -138,9 +138,58 @@ function Books() {
             <button onClick={() => handleDelete(book.id)}>Delete</button>
           </div>
         ))
-      )}
+      )} */}
 
-      {showModal && (
+      <div className="container">
+        <div className="currently_reading">
+          <h2>Currently reading</h2>
+        </div>
+
+        <div className="modal">
+          <div className="modal-content">
+            {/* <h2>{editBook ? "Edit Book" : "Add a Book"}</h2> */}
+            <h2>Add a Book</h2>
+            <div className="modal-input">
+              <input
+                name="title"
+                placeholder="Title"
+                value={form.title}
+                onChange={handleChange}
+              />
+              <input
+                name="author"
+                placeholder="Author"
+                value={form.author}
+                onChange={handleChange}
+              />
+              <input
+                name="genre"
+                placeholder="Genre"
+                value={form.genre}
+                onChange={handleChange}
+              />
+              <input
+                name="description"
+                placeholder="Description"
+                value={form.description}
+                onChange={handleChange}
+              />
+              <select name="status" value={form.status} onChange={handleChange}>
+                <option value="want to read">Want to Read</option>
+                <option value="READING">Reading</option>
+                <option value="READ">Read</option>
+              </select>
+              <button className="add-book-btn" onClick={handleSubmit}>
+                {/* {editBook ? "Update" : "Add Book"} */}
+                Add Book
+              </button>
+              {/* <button onClick={closeModal}>Cancel</button> */}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* {showModal && (
         <div className="modal">
           <div className="modal-content">
             <h2>{editBook ? "Edit Book" : "Add Book"}</h2>
@@ -179,7 +228,7 @@ function Books() {
             <button onClick={closeModal}>Cancel</button>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

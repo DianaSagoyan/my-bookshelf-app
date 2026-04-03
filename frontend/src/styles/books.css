@@ -20,3 +20,81 @@
 .btn-sign-out:hover {
   transform: scale(1.1);
 }
+
+.nav_logo {
+  color: #f08d39;
+  font-size: 2.7rem;
+  position: absolute;
+  padding-left: 25px;
+  padding-top: 7px;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.currently_reading,
+.modal {
+  flex: 1;
+}
+
+.currently_reading {
+  text-align: center;
+}
+
+.modal {
+  background-color: rgba(128, 128, 128, 0.2);
+}
+
+.modal-content {
+  margin-top: 8%;
+}
+
+.modal-content h2 {
+  text-align: center;
+  font-size: 2.7rem;
+  color: #2c3930;
+}
+
+.modal-input {
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.modal-input input,
+select {
+  width: 45%;
+  margin: 10px;
+  padding: 7px 5px;
+  border-radius: 5px;
+  border: 1px solid #555;
+  outline: none;
+  height: 40px;
+  padding-left: 10px;
+}
+
+.modal-input select {
+  color: #2c3930;
+}
+
+.add-book-btn {
+  width: 20%;
+  padding: 7px;
+  margin: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  background-color: #fff;
+  font-size: 16px;
+  color: #2c3930;
+  transition: transform 0.3s ease;
+}
+
+.add-book-btn:hover {
+  transform: scale(1.1);
+}

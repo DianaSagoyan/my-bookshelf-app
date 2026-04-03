@@ -5,21 +5,22 @@ export default function Navbar() {
   return (
     <>
       <div className="nav">
-        <p>My Bookshelf</p>
-        <ul>
+        <p className="nav_logo">My Bookshelf</p>
+        <ul className="div_list">
+          {/* <p className="nav_logo">My Bookshelf</p> */}
           <li>
             <button className="btn-login" onClick={() => navigate("/login")}>
-              login
+              Books I've read
             </button>
           </li>
           <li>
             <button className="btn-login" onClick={() => navigate("/login")}>
-              login
+              To Read
             </button>
           </li>
           <li>
             <button className="btn-login" onClick={() => navigate("/login")}>
-              login
+              My Goal
             </button>
           </li>
           <li>

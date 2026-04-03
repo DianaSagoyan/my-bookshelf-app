@@ -1,6 +1,7 @@
 import "../styles/styles.css";
-import "../components/navbar";
-// import Navbar from "../components/navbar";
+import "../components/intro_navbar";
+import Navbar from "../components/navbar";
+import "../styles/books.css";
 
 import { useState, useEffect } from "react";
 
@@ -119,6 +120,7 @@ function Books() {
 
   return (
     <div>
+      <Navbar />
       <h1>My Books</h1>
       <button onClick={openCreateModal}>+ Add Book</button>
 
@@ -167,7 +169,7 @@ function Books() {
               onChange={handleChange}
             />
             <select name="status" value={form.status} onChange={handleChange}>
-              <option value="WANT_TO_READ">Want to Read</option>
+              <option value="want to read">Want to Read</option>
               <option value="READING">Reading</option>
               <option value="READ">Read</option>
             </select>

@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.btn-sign-out {
+  background-color: rgba(255, 255, 255, 0.3); /* white with 30% opacity */
+  border: 1px solid rgba(255, 255, 255, 0.5); /* soft white border */
+  border: none;
+  color: #fef3e2;
+  padding: 7px 17px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  margin-right: 15px;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+}
+
+.btn-sign-out:hover {
+  transform: scale(1.1);
+}

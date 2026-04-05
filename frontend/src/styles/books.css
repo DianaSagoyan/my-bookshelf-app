@@ -40,8 +40,15 @@
 }
 
 .currently_reading {
-  text-align: center;
+  display: flex;
+  justify-content: center; /* horizontal */
+  align-items: center;
 }
+
+/* .current-book-header {
+  text-align: center;
+  justify-content: center;
+} */
 
 .modal {
   background-color: rgba(128, 128, 128, 0.2);

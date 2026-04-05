@@ -97,6 +97,7 @@ function Books() {
       // }
 
       setBooks([...books, data]);
+      setForm(emptyForm);
       // closeModal();
     } catch (err) {
       setError(err.message);
@@ -142,7 +143,10 @@ function Books() {
 
       <div className="container">
         <div className="currently_reading">
-          <h2>Currently reading</h2>
+          <h2 className="current-book-header">Currently reading</h2>
+          <div className="current-book">
+            <p>12 Rule for Life</p>
+          </div>
         </div>
 
         <div className="modal">

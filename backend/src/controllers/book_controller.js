@@ -25,9 +25,6 @@ export const getBook = async (req, res) => {
 
 export const createBook = async (req, res) => {
   try {
-    console.log("Create book hit");
-    console.log("Body:", req.body);
-    console.log("UserId:", req.userId);
     const { title, author, genre, description, status, userId } = req.body;
 
     const book = await prisma.book.create({
@@ -40,11 +37,8 @@ export const createBook = async (req, res) => {
         userId: req.userId,
       },
     });
-
-    console.log("Book created:", book);
     res.status(201).json(book);
   } catch (error) {
-    console.log("Error:", error);
     res.status(500).json({ error: "Something went wrong" });
   }
 };

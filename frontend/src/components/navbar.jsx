@@ -10,6 +10,11 @@ export default function Navbar() {
           {/* <p className="nav_logo">My Bookshelf</p> */}
           <li>
             <button className="btn-login" onClick={() => navigate("/login")}>
+              Favourite Quotes
+            </button>
+          </li>
+          <li>
+            <button className="btn-login" onClick={() => navigate("/login")}>
               Books I've read
             </button>
           </li>

@@ -9,7 +9,7 @@ export default function Navbar() {
         <ul className="div_list">
           {/* <p className="nav_logo">My Bookshelf</p> */}
           <li>
-            <button className="btn-login" onClick={() => navigate("/login")}>
+            <button className="btn-login" onClick={() => navigate("/quotes")}>
               Favourite Quotes
             </button>
           </li>

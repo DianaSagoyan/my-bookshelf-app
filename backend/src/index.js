@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import bookRoutes from "./routes/book_routes.js";
 import authRoutes from "./routes/auth_routes.js";
+import quoteRoutes from "./routes/quote_routes.js";
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.get("/", (req, res) => {
 
 app.use(authRoutes);
 app.use(bookRoutes);
+app.use(quoteRoutes);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server running on port ${port}`));

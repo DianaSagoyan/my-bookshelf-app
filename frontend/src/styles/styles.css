@@ -71,7 +71,8 @@ h1 {
   margin: 10px;
 }
 
-.btn-login {
+.btn-login,
+.btn-quotes {
   background-color: transparent;
   border: none;
   color: #fff;

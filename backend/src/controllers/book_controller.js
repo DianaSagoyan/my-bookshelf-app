@@ -71,3 +71,17 @@ export const deleteBook = async (req, res) => {
     res.status(500).json({ error: "Something went wrong" });
   }
 };
+
+export const getCurrentlyReading = async (req, res) => {
+  try {
+    const book = prisma.book.findFirst({
+      where: {
+        userId: req.userId,
+        status: "READING",
+      },
+    });
+    res.status(200).json(book);
+  } catch (error) {
+    res.status(500).json({ error: "Something went wrong" });
+  }
+};

@@ -15,5 +15,6 @@ router.get("/books", authenticate, getBooks);
 router.post("/books", authenticate, createBook);
 router.put("/books/:id", authenticate, updateBook);
 router.delete("books/:id", authenticate, deleteBook);
+router.get("/books/currently-reading", authenticate, getCurrentlyReading);
 
 export default router;

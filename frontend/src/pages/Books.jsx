@@ -143,9 +143,11 @@ function Books() {
 
       <div className="container">
         <div className="currently_reading">
-          <h2 className="current-book-header">Currently reading</h2>
-          <div className="current-book">
-            <p>12 Rule for Life</p>
+          <h2 className="current-book-header">Currently Reading</h2>
+          <div className="current-book-box">
+            <div className="current-book">
+              <p>12 Rule for Life</p>
+            </div>
           </div>
         </div>
 

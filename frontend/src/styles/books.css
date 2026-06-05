@@ -31,7 +31,21 @@
 
 .container {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
+  position: relative;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("../images/background.png") repeat-y center top / cover;
+  opacity: 0.1; /* transparency of the books image */
+  z-index: 0;
+  background-position: center -70px;
 }
 
 .currently_reading,
@@ -41,14 +55,37 @@
 
 .currently_reading {
   display: flex;
-  justify-content: center; /* horizontal */
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
-/* .current-book-header {
+.currently_reading h2 {
+  color: #f08d39;
+  font-size: 3rem;
+  letter-spacing: 0.35rem;
+  font-weight: 200;
+  padding-bottom: 2rem;
+}
+
+.current-book-box {
+  height: 70%;
+  width: 50%;
+  background-color: rgba(128, 128, 128, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.current-book {
   text-align: center;
   justify-content: center;
-} */
+}
+
+.current-book p {
+  color: #57595b;
+  font-size: 1.75rem;
+}
 
 .modal {
   background-color: rgba(128, 128, 128, 0.2);

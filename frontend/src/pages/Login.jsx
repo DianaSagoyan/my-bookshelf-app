@@ -32,6 +32,10 @@ function Login() {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") handleSubmit();
+  };
+
   return (
     <div className="auth">
       <h1>Login</h1>
@@ -42,6 +46,7 @@ function Login() {
           placeholder="Email"
           value={form.email}
           onChange={handleChange}
+          onKeyDown={handleKeyDown}
         />
         <input
           name="password"
@@ -49,6 +54,7 @@ function Login() {
           placeholder="Password"
           value={form.password}
           onChange={handleChange}
+          onKeyDown={handleKeyDown}
         />
         <button className="auth_btn" onClick={handleSubmit}>
           Login

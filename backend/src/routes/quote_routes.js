@@ -14,6 +14,6 @@ router.get("/quotes", authenticate, getQuotes);
 router.get("/quotes/:bookId/quotes", authenticate, getQuotesByBook);
 router.post("/quotes", authenticate, addQuote);
 router.put("/quotes/:quoteId", authenticate, updateQuote);
-router.dlete("/quotes/:quoteId", authenticate, deleteQuote);
+router.delete("/quotes/:quoteId", authenticate, deleteQuote);
 
 export default router;

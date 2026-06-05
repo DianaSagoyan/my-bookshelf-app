@@ -71,6 +71,10 @@ h1 {
   margin: 10px;
 }
 
+.nav_logo {
+  cursor: pointer;
+}
+
 .btn-login,
 .btn-quotes {
   background-color: transparent;

@@ -5,7 +5,9 @@ export default function Navbar() {
   return (
     <>
       <div className="nav">
-        <p className="nav_logo">My Bookshelf</p>
+        <p className="nav_logo" onClick={() => navigate("/books")}>
+          My Bookshelf
+        </p>
         <ul className="div_list">
           {/* <p className="nav_logo">My Bookshelf</p> */}
           <li>

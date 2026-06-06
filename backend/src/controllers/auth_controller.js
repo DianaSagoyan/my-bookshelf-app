@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { prisma } from "../lib/prisma.js";
+import { prisma } from "../lib/prisma.ts";
 import { error } from "node:console";
 import { use } from "react";
 

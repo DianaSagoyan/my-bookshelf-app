@@ -13,11 +13,13 @@ export const getBooks = async (req, res) => {
 
 export const getBook = async (req, res) => {
   try {
+    const id = req.params;
     const book = await prisma.book.findUnique({
       where: { id: parseInt(id) },
     });
 
     if (!book) return res.status(404).json({ error: "Book not found" });
+    res.status(200).json(book);
   } catch (error) {
     res.status(500).json({ error: "Something went wrong" });
   }
@@ -45,7 +47,7 @@ export const createBook = async (req, res) => {
 
 export const updateBook = async (req, res) => {
   try {
-    const id = req.params;
+    const { id } = req.params;
     const { title, author, genre, description, status } = req.body;
 
     const book = await prisma.book.update({
@@ -61,7 +63,7 @@ export const updateBook = async (req, res) => {
 
 export const deleteBook = async (req, res) => {
   try {
-    const id = req.params;
+    const { id } = req.params;
     const book = await prisma.book.delete({
       where: { id: parseInt(id) },
     });
@@ -74,7 +76,7 @@ export const deleteBook = async (req, res) => {
 
 export const getCurrentlyReading = async (req, res) => {
   try {
-    const book = prisma.book.findFirst({
+    const book = await prisma.book.findFirst({
       where: {
         userId: req.userId,
         status: "READING",

@@ -4,6 +4,7 @@ import Navbar from "../components/navbar";
 import "../styles/books.css";
 
 import { useState, useEffect } from "react";
+import { Beaker } from "lucide-react";
 
 const emptyForm = {
   title: "",
@@ -21,6 +22,7 @@ function Books() {
   // const [editBook, setEditBook] = useState(null);
   const [form, setForm] = useState(emptyForm);
   const token = localStorage.getItem("token");
+  const [currentBook, setCurrentBook] = useState(null);
 
   const fetchBooks = () => {
     fetch(`${import.meta.env.VITE_API_URL}/books`, {
@@ -42,6 +44,16 @@ function Books() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   );
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    fetch(`${import.meta.env.VITE_API_URL}/books/currently-reading`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => res.json())
+      .then((data) => setCurrentBook(data));
+  }, []);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -146,7 +158,9 @@ function Books() {
           <h2 className="current-book-header">Currently Reading</h2>
           <div className="current-book-box">
             <div className="current-book">
-              <p>12 Rule for Life</p>
+              <p>
+                {currentBook ? currentBook.title : "No Book currently Reading"}
+              </p>
             </div>
           </div>
         </div>
@@ -181,7 +195,7 @@ function Books() {
                 onChange={handleChange}
               />
               <select name="status" value={form.status} onChange={handleChange}>
-                <option value="want to read">Want to Read</option>
+                <option value="WANT_TO_READ">Want to Read</option>
                 <option value="READING">Reading</option>
                 <option value="READ">Read</option>
               </select>

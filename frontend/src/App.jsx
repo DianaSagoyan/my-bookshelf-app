@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Quotes from "./pages/Quotes";
 import ReadBooks from "./pages/ReadBooks";
+import ToRead from "./pages/ToRead";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/quotes" element={<Quotes />} />
         <Route path="/read" element={<ReadBooks />} />
+        <Route path="/want-to-read" element={<ToRead />} />
       </Routes>
     </BrowserRouter>
   );

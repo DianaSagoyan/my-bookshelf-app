@@ -7,6 +7,7 @@ import {
   deleteBook,
   getCurrentlyReading,
   getReadBooks,
+  getWantToRead,
 } from "../controllers/book_controller.js";
 import { authenticate } from "../middleware/auth_middleware.js";
 
@@ -19,5 +20,6 @@ router.post("/books", authenticate, createBook);
 router.put("/books/:id", authenticate, updateBook);
 router.delete("books/:id", authenticate, deleteBook);
 router.get("/read", authenticate, getReadBooks);
+router.get("want-to-read", authenticate, getWantToRead);
 
 export default router;

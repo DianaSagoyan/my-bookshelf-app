@@ -102,3 +102,18 @@ export const getReadBooks = async (req, res) => {
     res.status(500).json({ error: "Something went wrong" });
   }
 };
+
+export const getWantToRead = async (req, res) => {
+  try {
+    const books = await prisma.book.findMany({
+      where: {
+        userId: req.userId,
+        status: "WANT_TO_READ",
+      },
+    });
+
+    res.status(200).json(books);
+  } catch (error) {
+    res.status(500).json({ error: "Something went wrong" });
+  }
+};

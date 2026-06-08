@@ -18,8 +18,6 @@ function Books() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  // const [showModal, setShowModal] = useState(false);
-  // const [editBook, setEditBook] = useState(null);
   const [form, setForm] = useState(emptyForm);
   const token = localStorage.getItem("token");
   const [currentBook, setCurrentBook] = useState(null);
@@ -59,35 +57,8 @@ function Books() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // const openCreateModal = () => {
-  //   setEditBook(null);
-  //   setForm(emptyForm);
-  //   setShowModal(true);
-  // };
-
-  // const openEditModal = (book) => {
-  //   setEditBook(book);
-  //   setForm({
-  //     title: book.title,
-  //     author: book.author,
-  //     genre: book.genre || "",
-  //     description: book.description || "",
-  //     status: book.status,
-  //   });
-  // };
-
-  // const closeModal = () => {
-  //   setShowModal(false);
-  //   setEditBook(null);
-  //   setForm(emptyForm);
-  // };
-
   const handleSubmit = async () => {
-    // const method = editBook ? "PUT" : "POST";
     const method = "POST";
-    // const url = editBook
-    //   ? `${import.meta.env.VITE_API_URL}/books/${editBook.id}`
-    //   : `${import.meta.env.VITE_API_URL}/books`;
     const url = `${import.meta.env.VITE_API_URL}/books`;
     const token = localStorage.getItem("token");
 
@@ -102,12 +73,6 @@ function Books() {
       });
       const data = await res.json();
 
-      // if (editBook) {
-      //   setBooks(books.map((b) => (b.id === editBook.id ? data : b)));
-      // } else {
-      //   setBooks([...books, data]);
-      // }
-
       setBooks([...books, data]);
       setForm(emptyForm);
       // closeModal();
@@ -116,139 +81,79 @@ function Books() {
     }
   };
 
-  // const handleDelete = async (id) => {
-  //   try {
-  //     await fetch(`${import.meta.env.VITE_API_URL}/books/${id}`, {
-  //       method: "DELETE",
-  //       headers: { Authorization: `Bearer ${token}` },
-  //     });
-  //     setBooks(books.filter((b) => b.id !== id));
-  //   } catch (err) {
-  //     setError(err.message);
-  //   }
-  // };
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
-
   return (
     <div>
       <Navbar />
-      {/* <h1>My Books</h1> */}
-      {/* <button onClick={openCreateModal}>+ Add Book</button> */}
-      {/* 
-      {books.length === 0 ? (
-        <p>No books yet</p>
-      ) : (
-        books.map((book) => (
-          <div key={book.id}>
-            <h2>{book.title}</h2>
-            <p>{book.author}</p>
-            <p>{book.genre}</p>
-            <p>{book.description}</p>
-            <p>{book.status}</p>
-            <button onClick={() => openEditModal(book)}>Edit</button>
-            <button onClick={() => handleDelete(book.id)}>Delete</button>
-          </div>
-        ))
-      )} */}
 
       <div className="container">
-        <div className="currently_reading">
-          <h2 className="current-book-header">Currently Reading</h2>
-          <div className="current-book-box">
-            <div className="current-book">
-              <p>
-                {currentBook ? currentBook.title : "No Book currently Reading"}
-              </p>
+        {loading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p>{error}</p>
+        ) : (
+          <>
+            <div className="currently_reading">
+              <h2 className="current-book-header">Currently Reading</h2>
+              <div className="current-book-box">
+                <div className="current-book">
+                  <p>
+                    {currentBook
+                      ? currentBook.title
+                      : "No Book currently Reading"}
+                  </p>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
 
-        <div className="modal">
-          <div className="modal-content">
-            {/* <h2>{editBook ? "Edit Book" : "Add a Book"}</h2> */}
-            <h2>Add a Book</h2>
-            <div className="modal-input">
-              <input
-                name="title"
-                placeholder="Title"
-                value={form.title}
-                onChange={handleChange}
-              />
-              <input
-                name="author"
-                placeholder="Author"
-                value={form.author}
-                onChange={handleChange}
-              />
-              <input
-                name="genre"
-                placeholder="Genre"
-                value={form.genre}
-                onChange={handleChange}
-              />
-              <input
-                name="description"
-                placeholder="Description"
-                value={form.description}
-                onChange={handleChange}
-              />
-              <select name="status" value={form.status} onChange={handleChange}>
-                <option value="WANT_TO_READ">Want to Read</option>
-                <option value="READING">Reading</option>
-                <option value="READ">Read</option>
-              </select>
-              <button className="add-book-btn" onClick={handleSubmit}>
-                {/* {editBook ? "Update" : "Add Book"} */}
-                Add Book
-              </button>
-              {/* <button onClick={closeModal}>Cancel</button> */}
+            <div className="modal">
+              <div className="modal-content">
+                {/* <h2>{editBook ? "Edit Book" : "Add a Book"}</h2> */}
+                <h2>Add a Book</h2>
+                <div className="modal-input">
+                  <input
+                    name="title"
+                    placeholder="Title"
+                    value={form.title}
+                    onChange={handleChange}
+                  />
+                  <input
+                    name="author"
+                    placeholder="Author"
+                    value={form.author}
+                    onChange={handleChange}
+                  />
+                  <input
+                    name="genre"
+                    placeholder="Genre"
+                    value={form.genre}
+                    onChange={handleChange}
+                  />
+                  <input
+                    name="description"
+                    placeholder="Description"
+                    value={form.description}
+                    onChange={handleChange}
+                  />
+                  <select
+                    name="status"
+                    value={form.status}
+                    onChange={handleChange}
+                  >
+                    <option value="WANT_TO_READ">Want to Read</option>
+                    <option value="READING">Reading</option>
+                    <option value="READ">Read</option>
+                  </select>
+                  <button className="add-book-btn" onClick={handleSubmit}>
+                    {/* {editBook ? "Update" : "Add Book"} */}
+                    Add Book
+                  </button>
+                  {/* <button onClick={closeModal}>Cancel</button> */}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </>
+        )}
       </div>
-
-      {/* {showModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <h2>{editBook ? "Edit Book" : "Add Book"}</h2>
-            <input
-              name="title"
-              placeholder="Title"
-              value={form.title}
-              onChange={handleChange}
-            />
-            <input
-              name="author"
-              placeholder="Author"
-              value={form.author}
-              onChange={handleChange}
-            />
-            <input
-              name="genre"
-              placeholder="Genre"
-              value={form.genre}
-              onChange={handleChange}
-            />
-            <input
-              name="description"
-              placeholder="Description"
-              value={form.description}
-              onChange={handleChange}
-            />
-            <select name="status" value={form.status} onChange={handleChange}>
-              <option value="want to read">Want to Read</option>
-              <option value="READING">Reading</option>
-              <option value="READ">Read</option>
-            </select>
-            <button onClick={handleSubmit}>
-              {editBook ? "Update" : "Create"}
-            </button>
-            <button onClick={closeModal}>Cancel</button>
-          </div>
-        </div>
-      )} */}
     </div>
   );
 }

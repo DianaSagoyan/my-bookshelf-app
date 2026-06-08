@@ -33,6 +33,7 @@
   display: flex;
   min-height: 100vh;
   position: relative;
+  animation: fadeIn 0.3s ease-in;
 }
 
 .container::before {
@@ -84,7 +85,7 @@
 
 .current-book p {
   color: #57595b;
-  font-size: 1.75rem;
+  font-size: 3rem;
 }
 
 .modal {
@@ -141,4 +142,13 @@ select {
 
 .add-book-btn:hover {
   transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

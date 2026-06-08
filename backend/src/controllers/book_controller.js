@@ -1,5 +1,5 @@
-import express from "express";
-import { prisma } from "../lib/prisma.js";
+// import express from "express";
+import { prisma } from "../lib/prisma.ts";
 // import { error } from "node:console";
 
 export const getBooks = async (req, res) => {
@@ -83,6 +83,21 @@ export const getCurrentlyReading = async (req, res) => {
       },
     });
     res.status(200).json(book);
+  } catch (error) {
+    res.status(500).json({ error: "Something went wrong" });
+  }
+};
+
+export const getReadBooks = async (req, res) => {
+  try {
+    const books = await prisma.book.findMany({
+      where: {
+        userId: req.userId,
+        status: "READ",
+      },
+    });
+
+    res.status(200).json(books);
   } catch (error) {
     res.status(500).json({ error: "Something went wrong" });
   }

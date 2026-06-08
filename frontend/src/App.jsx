@@ -4,6 +4,7 @@ import Books from "./pages/Books";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Quotes from "./pages/Quotes";
+import ReadBooks from "./pages/ReadBooks";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/quotes" element={<Quotes />} />
+        <Route path="/read" element={<ReadBooks />} />
       </Routes>
     </BrowserRouter>
   );

@@ -14,12 +14,12 @@ import { authenticate } from "../middleware/auth_middleware.js";
 const router = express.Router();
 
 router.get("/books/currently-reading", authenticate, getCurrentlyReading);
+router.get("/books/read", authenticate, getReadBooks);
+router.get("/books/want-to-read", authenticate, getWantToRead);
 router.get("/books/:id", authenticate, getBook);
 router.get("/books", authenticate, getBooks);
 router.post("/books", authenticate, createBook);
 router.put("/books/:id", authenticate, updateBook);
-router.delete("books/:id", authenticate, deleteBook);
-router.get("/read", authenticate, getReadBooks);
-router.get("want-to-read", authenticate, getWantToRead);
+router.delete("/books/:id", authenticate, deleteBook);
 
 export default router;

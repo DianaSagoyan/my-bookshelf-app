@@ -1,0 +1,32 @@
+.book-list {
+  list-style: none;
+  padding: 1rem;
+  line-height: 3rem;
+}
+
+.book-list-item {
+  font-size: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.book-title {
+  font-size: 2rem;
+}
+
+.book-author {
+  font-size: 1.4rem;
+  color: #57595b;
+  padding-left: 3rem;
+}
+
+.book-quotes-btn {
+  padding: 0.5rem 1.2rem;
+  background-color: #2d4a3e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+}

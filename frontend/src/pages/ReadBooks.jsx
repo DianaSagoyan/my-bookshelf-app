@@ -13,7 +13,7 @@ export default function ReadBooks() {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      const data = res.json;
+      const data = await res.json();
       setBooks(Array.isArray(data) ? data : []);
     };
 

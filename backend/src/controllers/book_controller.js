@@ -97,11 +97,8 @@ export const getReadBooks = async (req, res) => {
       },
     });
 
-    console.log("books found:", books);
-
     res.status(200).json(books);
   } catch (error) {
-    console.log("error:", error);
     res.status(500).json({ error: "Something went wrong" });
   }
 };
@@ -115,6 +112,7 @@ export const getWantToRead = async (req, res) => {
       },
     });
 
+    console.log(books);
     res.status(200).json(books);
   } catch (error) {
     res.status(500).json({ error: "Something went wrong" });

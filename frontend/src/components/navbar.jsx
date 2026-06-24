@@ -34,7 +34,7 @@ export default function Navbar() {
             </button>
           </li>
           <li>
-            <button className="btn-sign-out" onClick={() => navigate("/login")}>
+            <button className="btn-sign-out" onClick={() => navigate("/")}>
               Sign out
             </button>
           </li>

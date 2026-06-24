@@ -11,7 +11,7 @@ import { authenticate } from "../middleware/auth_middleware.js";
 const router = express.Router();
 
 router.get("/quotes", authenticate, getQuotes);
-router.get("/quotes/:bookId/quotes", authenticate, getQuotesByBook);
+router.get("/quotes/:bookId", authenticate, getQuotesByBook);
 router.post("/quotes", authenticate, addQuote);
 router.put("/quotes/:quoteId", authenticate, updateQuote);
 router.delete("/quotes/:quoteId", authenticate, deleteQuote);

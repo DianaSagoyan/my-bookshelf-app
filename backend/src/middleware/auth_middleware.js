@@ -10,8 +10,6 @@ export const authenticate = (req, res, next) => {
 
   const token = authHeader.split(" ")[1]; //Bearer token
 
-  console.log("Auth header:", req.headers.authorization);
-
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
     req.userId = decoded.userId;

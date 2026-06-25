@@ -1,7 +1,8 @@
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../styles/lists.css";
 
 export default function BookList({ books }) {
+  const navigate = useNavigate();
   return (
     <ul className="book-list">
       {books.map((book) => (
@@ -12,7 +13,7 @@ export default function BookList({ books }) {
           </div>
           <button
             className="book-quotes-btn"
-            onClick={() => Navigate(`/quotes/${book.id}`)}
+            onClick={() => navigate(`/quotes/${book.id}`)}
           >
             Quotes
           </button>

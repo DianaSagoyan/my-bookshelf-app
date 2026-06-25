@@ -34,7 +34,18 @@ async function main() {
             status: "READ",
             quotes: {
               create: [
-                { text: "So we beat on, boats against the current", page: 180 },
+                {
+                  text: "So we beat on, boats against the current, borne back ceaselessly into the past.",
+                  page: 180,
+                },
+                {
+                  text: "I hope she'll be a fool — that's the best thing a girl can be in this world, a beautiful little fool.",
+                  page: 21,
+                },
+                {
+                  text: "Can't repeat the past? Why of course you can!",
+                  page: 110,
+                },
               ],
             },
           },
@@ -44,6 +55,19 @@ async function main() {
             genre: "Dystopian",
             description: "A story about a totalitarian society",
             status: "READING",
+            quotes: {
+              create: [
+                {
+                  text: "War is peace. Freedom is slavery. Ignorance is strength.",
+                  page: 4,
+                },
+                { text: "Big Brother is watching you.", page: 3 },
+                {
+                  text: "If you want to keep a secret, you must also hide it from yourself.",
+                  page: 281,
+                },
+              ],
+            },
           },
           {
             title: "To Kill a Mockingbird",
@@ -51,6 +75,18 @@ async function main() {
             genre: "Fiction",
             description: "A story about racial injustice",
             status: "WANT_TO_READ",
+            quotes: {
+              create: [
+                {
+                  text: "You never really understand a person until you consider things from his point of view.",
+                  page: 39,
+                },
+                {
+                  text: "I think there's just one kind of folks. Folks.",
+                  page: 227,
+                },
+              ],
+            },
           },
         ],
       },

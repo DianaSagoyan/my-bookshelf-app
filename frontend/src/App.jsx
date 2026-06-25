@@ -6,6 +6,7 @@ import Register from "./pages/Register";
 import Quotes from "./pages/Quotes";
 import ReadBooks from "./pages/ReadBooks";
 import ToRead from "./pages/ToRead";
+import QuoteList from "./components/QuoteList";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/quotes" element={<Quotes />} />
+        <Route path="/quotes/:bookId" element={<Quotes />} />
         <Route path="/read" element={<ReadBooks />} />
         <Route path="/want-to-read" element={<ToRead />} />
       </Routes>

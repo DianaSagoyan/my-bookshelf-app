@@ -18,6 +18,8 @@ export const getQuotesByBook = async (req, res) => {
     const quotes = await prisma.quote.findMany({
       where: { book: { userId: req.userId }, bookId: parseInt(bookId) },
     });
+
+    res.status(200).json(quotes);
   } catch (error) {
     res.status(500).json({ error: "Somthing went wrong" });
   }

@@ -111,8 +111,6 @@ export const getWantToRead = async (req, res) => {
         status: "WANT_TO_READ",
       },
     });
-
-    console.log(books);
     res.status(200).json(books);
   } catch (error) {
     res.status(500).json({ error: "Something went wrong" });

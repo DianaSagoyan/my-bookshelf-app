@@ -23,7 +23,7 @@ export default function ToRead() {
   return (
     <div>
       <Navbar />
-      <BookList books={books} />
+      <BookList books={books} mode="toRead" />
     </div>
   );
 }

@@ -11,6 +11,7 @@ export default function BookList({ books }) {
             <span className="book-title">{book.title}</span>
             <span className="book-author">{book.author}</span>
           </div>
+
           <button
             className="book-quotes-btn"
             onClick={() => navigate(`/quotes/${book.id}`)}

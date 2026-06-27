@@ -6,6 +6,21 @@ import "../styles/styles.css";
 export default function ToRead() {
   const [books, setBooks] = useState([]);
 
+  const handleStartReading = async (id) => {
+    const res = await fetch(`http://localhost:5000/books/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({ status: "READING" }),
+    });
+
+    if (res.ok) {
+      setBooks((prev) => prev.filter((book) => book.id !== id));
+    }
+  };
+
   useEffect(() => {
     const fetchWantToRead = async () => {
       const res = await fetch("http://localhost:5000/books/want-to-read", {
@@ -14,6 +29,7 @@ export default function ToRead() {
         },
       });
       const data = await res.json();
+      console.log("want to read books:", data);
       setBooks(Array.isArray(data) ? data : []);
     };
 
@@ -23,7 +39,11 @@ export default function ToRead() {
   return (
     <div>
       <Navbar />
-      <BookList books={books} mode="toRead" />
+      <BookList
+        books={books}
+        mode="toRead"
+        onStartReading={handleStartReading}
+      />
     </div>
   );
 }

@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import "../styles/styles.css";
-import "../styles/books.css";
 
 const emptyForm = {
   title: "",
@@ -10,42 +8,26 @@ const emptyForm = {
   status: "WANT_TO_READ",
 };
 
-export default function Form() {
-  const [form, setForm] = useState(emptyForm);
-  const [books, setBooks] = useState([]);
+export default function Form({ book, onSuccess }) {
+  const [form, setForm] = useState(book || emptyForm);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const token = localStorage.getItem("token");
 
-  const fetchBooks = () => {
-    fetch(`${import.meta.env.VITE_API_URL}/books`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setBooks(data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setError("Failed to fetch books");
-        setLoading(false);
-      });
-  };
+  const isEditing = Boolean(book);
 
-  useEffect(
-    () => fetchBooks(),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
-  );
+  useEffect(() => {
+    setForm(book || emptyForm);
+  }, [book]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async () => {
-    const method = "POST";
-    const url = `${import.meta.env.VITE_API_URL}/books`;
     const token = localStorage.getItem("token");
+    const url = isEditing
+      ? `${import.meta.env.VITE_API_URL}/books/${book.id}`
+      : `${import.meta.env.VITE_API_URL}/books`;
+    const method = isEditing ? "PUT" : "POST";
 
     try {
       const res = await fetch(url, {
@@ -56,23 +38,24 @@ export default function Form() {
         },
         body: JSON.stringify(form),
       });
-      const data = await res.json();
 
-      setBooks([...books, data]);
+      if (!res.ok)
+        throw new Error(
+          isEditing ? "Failed to update the book" : "Failed to add the book",
+        );
+      const data = await res.json();
       setForm(emptyForm);
-      // closeModal();
+      if (onSuccess) onSuccess(data);
     } catch (err) {
       setError(err.message);
     }
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
-
   return (
     <div className="modal">
       <div className="modal-content">
-        <h2>Add a Book</h2>
+        <h2>{isEditing ? "Update Book" : "Add a Book"}</h2>
+        {error && <p>{error}</p>}
         <div className="modal-input">
           <input
             name="title"

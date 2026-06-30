@@ -30,3 +30,8 @@
   cursor: pointer;
   font-size: 1rem;
 }
+
+.book-actions {
+  display: flex;
+  gap: 0.7rem;
+}

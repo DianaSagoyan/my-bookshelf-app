@@ -11,23 +11,30 @@ export default function BookList({ books, mode, onStartReading }) {
             <span className="book-title">{book.title}</span>
             <span className="book-author">{book.author}</span>
           </div>
-
-          {mode === "read" && (
+          <div className="book-actions">
+            {mode === "read" && (
+              <button
+                className="book-quotes-btn"
+                onClick={() => navigate(`/quotes/${book.id}`)}
+              >
+                Quotes
+              </button>
+            )}
+            {mode === "toRead" && (
+              <button
+                className="book-quotes-btn"
+                onClick={() => onStartReading(book.id)}
+              >
+                Start Reading
+              </button>
+            )}
             <button
               className="book-quotes-btn"
               onClick={() => navigate(`/quotes/${book.id}`)}
             >
-              Quotes
+              Update
             </button>
-          )}
-          {mode === "toRead" && (
-            <button
-              className="book-quotes-btn"
-              onClick={() => onStartReading(book.id)}
-            >
-              Start Reading
-            </button>
-          )}
+          </div>
         </li>
       ))}
     </ul>

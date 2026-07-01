@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "../styles/lists.css";
 import { useState } from "react";
+import Form from "./Form";
 
 export default function BookList({ books, mode, onStartReading }) {
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ export default function BookList({ books, mode, onStartReading }) {
       </ul>
 
       {selectedBook && (
-        <div className=",odal-overlay">
+        <div className="modal-overlay">
           <div className="modal-box">
             <button
               className="modal-close"

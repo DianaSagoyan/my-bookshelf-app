@@ -9,13 +9,33 @@ const emptyForm = {
 };
 
 export default function Form({ book, onSuccess }) {
-  const [form, setForm] = useState(book || emptyForm);
   const [error, setError] = useState(null);
+  const [form, setForm] = useState(
+    book
+      ? {
+          title: book.title || "",
+          author: book.author || "",
+          genre: book.genre || "",
+          description: book.description || "",
+          status: book.status || "WANT_TO_READ",
+        }
+      : emptyForm,
+  );
 
   const isEditing = Boolean(book);
 
   useEffect(() => {
-    setForm(book || emptyForm);
+    setForm(
+      book
+        ? {
+            title: book.title || "",
+            author: book.author || "",
+            genre: book.genre || "",
+            description: book.description || "",
+            status: book.status || "WANT_TO_READ",
+          }
+        : emptyForm,
+    );
   }, [book]);
 
   const handleChange = (e) => {

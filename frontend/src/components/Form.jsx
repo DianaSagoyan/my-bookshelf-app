@@ -107,7 +107,7 @@ export default function Form({ book, onSuccess }) {
             <option value="READ">Read</option>
           </select>
           <button className="add-book-btn" onClick={handleSubmit}>
-            Add Book
+            {isEditing ? "Update" : "Add Book"}
           </button>
         </div>
       </div>

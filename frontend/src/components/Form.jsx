@@ -43,6 +43,14 @@ export default function Form({ book, onSuccess }) {
   };
 
   const handleSubmit = async () => {
+    console.log("submitting:", form);
+    console.log("isEditing:", isEditing);
+    console.log(
+      "url:",
+      isEditing
+        ? `${import.meta.env.VITE_API_URL}/books/${book.id}`
+        : `${import.meta.env.VITE_API_URL}/books`,
+    );
     const token = localStorage.getItem("token");
     const url = isEditing
       ? `${import.meta.env.VITE_API_URL}/books/${book.id}`
@@ -101,12 +109,16 @@ export default function Form({ book, onSuccess }) {
             value={form.description}
             onChange={handleChange}
           />
-          <select name="status" value={form.status} onChange={handleChange}>
+          <select
+            name="status"
+            value={form.status}
+            onChange={() => handleChange()}
+          >
             <option value="WANT_TO_READ">Want to Read</option>
             <option value="READING">Reading</option>
             <option value="READ">Read</option>
           </select>
-          <button className="add-book-btn" onClick={handleSubmit}>
+          <button className="add-book-btn" onClick={() => handleSubmit()}>
             {isEditing ? "Update" : "Add Book"}
           </button>
         </div>

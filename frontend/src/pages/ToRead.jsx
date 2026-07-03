@@ -29,7 +29,6 @@ export default function ToRead() {
         },
       });
       const data = await res.json();
-      console.log("want to read books:", data);
       setBooks(Array.isArray(data) ? data : []);
     };
 

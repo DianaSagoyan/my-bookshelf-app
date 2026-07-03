@@ -43,14 +43,10 @@ export default function Form({ book, onSuccess }) {
   };
 
   const handleSubmit = async () => {
-    console.log("submitting:", form);
-    console.log("isEditing:", isEditing);
-    console.log(
-      "url:",
-      isEditing
-        ? `${import.meta.env.VITE_API_URL}/books/${book.id}`
-        : `${import.meta.env.VITE_API_URL}/books`,
-    );
+    if (!form.title || !form.author || !form.status) {
+      setError("Title, author and status are required");
+      return;
+    }
     const token = localStorage.getItem("token");
     const url = isEditing
       ? `${import.meta.env.VITE_API_URL}/books/${book.id}`

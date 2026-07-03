@@ -5,6 +5,7 @@ export const getQuotes = async (req, res) => {
   try {
     const quotes = await prisma.quote.findMany({
       where: { book: { userId: req.userId } },
+      include: { book: true },
     });
     res.status(200).json(quotes);
   } catch (error) {

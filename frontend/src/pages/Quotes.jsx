@@ -1,15 +1,15 @@
 import Navbar from "../components/navbar";
 import "../styles/styles.css";
 import QuoteList from "../components/QuoteList";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 export default function Quotes() {
-  const { bookId } = useParams();
+  // const { bookId } = useParams();
 
   return (
     <div>
       <Navbar />
-      <QuoteList bookId={bookId} />
+      <QuoteList />
     </div>
   );
 }

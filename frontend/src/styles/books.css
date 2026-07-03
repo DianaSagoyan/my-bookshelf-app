@@ -34,6 +34,7 @@
   min-height: 100vh;
   position: relative;
   animation: fadeIn 0.3s ease-in;
+  overflow: visible;
 }
 
 .container::before {
@@ -67,6 +68,7 @@
   letter-spacing: 0.35rem;
   font-weight: 200;
   padding-bottom: 2rem;
+  overflow: visible;
 }
 
 .current-book-box {
@@ -76,6 +78,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  overflow: visible;
+  /* padding-bottom: 20px; */
+  position: relative;
 }
 
 .current-book {
@@ -127,8 +133,9 @@ select {
   color: #2c3930;
 }
 
-.add-book-btn {
-  width: 20%;
+.add-book-btn,
+.add-quote-btn {
+  width: 130px;
   padding: 7px;
   margin: 10px;
   border-radius: 5px;
@@ -140,7 +147,14 @@ select {
   transition: transform 0.3s ease;
 }
 
-.add-book-btn:hover {
+.add-quote-btn {
+  z-index: 1;
+  position: absolute;
+  bottom: 20px;
+}
+
+.add-book-btn:hover,
+.add-quote-btn:hover {
   transform: scale(1.1);
 }
 

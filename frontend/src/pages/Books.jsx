@@ -32,6 +32,7 @@ function Books() {
                 {currentBook ? currentBook.title : "No Book currently Reading"}
               </p>
             </div>
+            <button className="add-quote-btn">Add Quote</button>
           </div>
         </div>
 

@@ -75,6 +75,10 @@ export default function Form({ book, onSuccess }) {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") handleSubmit();
+  };
+
   return (
     <div className="modal">
       <div className="modal-content">
@@ -86,30 +90,30 @@ export default function Form({ book, onSuccess }) {
             placeholder="Title"
             value={form.title}
             onChange={handleChange}
+            onKeyDown={handleKeyDown}
           />
           <input
             name="author"
             placeholder="Author"
             value={form.author}
             onChange={handleChange}
+            onKeyDown={handleKeyDown}
           />
           <input
             name="genre"
             placeholder="Genre"
             value={form.genre}
             onChange={handleChange}
+            onKeyDown={handleKeyDown}
           />
           <input
             name="description"
             placeholder="Description"
             value={form.description}
             onChange={handleChange}
+            onKeyDown={handleKeyDown}
           />
-          <select
-            name="status"
-            value={form.status}
-            onChange={() => handleChange()}
-          >
+          <select name="status" value={form.status} onChange={handleChange}>
             <option value="WANT_TO_READ">Want to Read</option>
             <option value="READING">Reading</option>
             <option value="READ">Read</option>

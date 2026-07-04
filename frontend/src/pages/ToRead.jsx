@@ -1,5 +1,5 @@
 import BookList from "../components/BookList";
-import Navbar from "../components/navbar";
+import Navbar from "../components/Navbar";
 import { useState, useEffect } from "react";
 import "../styles/styles.css";
 

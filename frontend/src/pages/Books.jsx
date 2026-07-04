@@ -1,7 +1,7 @@
 import "../styles/styles.css";
 import "../styles/books.css";
 // import "../components/intro_navbar";
-import Navbar from "../components/navbar";
+import Navbar from "../components/Navbar";
 import Form from "../components/Form";
 
 import { useState, useEffect } from "react";
@@ -18,6 +18,21 @@ function Books() {
       .then((res) => res.json())
       .then((data) => setCurrentBook(data));
   }, []);
+
+  // const handleSubmit = async () => {
+  //   const token = localStorage.getItem("token");
+  //   const url = `${import.meta.env.VITE_API_URL}/quotes`;
+
+  //   try{
+  //     const res = await fetch(url, {
+  //       method: "POST",
+  //       Authorization: `Bearer ${token}`
+  //     },
+  //     body: JSON.stringify
+  //   )
+
+  //   }
+  // };
 
   return (
     <div>

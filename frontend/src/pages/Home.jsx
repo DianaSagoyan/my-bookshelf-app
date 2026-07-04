@@ -1,9 +1,9 @@
 import "../styles/styles.css";
-import Intro from "../components/intro";
-import BookImages from "../components/book-images";
-import Card from "../components/card";
-import Footer from "../components/footer";
-import IntroNavbar from "../components/intro_navbar";
+import Intro from "../components/Intro";
+import BookImages from "../components/Book-images";
+import Card from "../components/Card";
+import Footer from "../components/Footer";
+import IntroNavbar from "../components/Intro_navbar";
 
 function Home() {
   return (

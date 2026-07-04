@@ -1,4 +1,4 @@
-import Navbar from "../components/navbar";
+import Navbar from "../components/Navbar";
 import BookList from "../components/BookList";
 import { useEffect, useState } from "react";
 import "../styles/styles.css";

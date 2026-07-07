@@ -1,6 +1,5 @@
 import "../styles/styles.css";
 import "../styles/books.css";
-// import "../components/intro_navbar";
 import Navbar from "../components/Navbar";
 import Form from "../components/Form";
 

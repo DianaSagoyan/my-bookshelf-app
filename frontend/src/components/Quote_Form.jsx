@@ -6,7 +6,7 @@ const emptyForm = {
   book: "",
 };
 
-export default function QuoteForm({ quote }) {
+export default function QuoteForm({ quote, onSuccess }) {
   const [error, setError] = useState(null);
   const [form, setForm] = useState(
     quote
@@ -67,8 +67,49 @@ export default function QuoteForm({ quote }) {
 
       const data = await res.json();
       setForm(emptyForm);
+      if (onSuccess) onSuccess(data);
     } catch (err) {
       setError(err.message);
     }
   };
+
+  const handleKeyDown = (e) => {
+    if ((e.key = "Enter")) handleSubmit();
+  };
+
+  return (
+    <div className="modal">
+      <div className="modal-content">
+        <h2>{isEditing ? "Update Quote" : "Create Quote"}</h2>
+        {error && <p>{error}</p>}
+        <div className="modal-input">
+          <input
+            name="quote"
+            placeholder="Add quote"
+            value={form.text}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+          />
+          <input
+            name="page"
+            placeholder="Page"
+            value={form.page}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+          />
+          <input
+            name="Book"
+            placeholder="Book"
+            value={form.book}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+          />
+
+          <button className="add-book-btn" onClick={() => handleSubmit()}>
+            {isEditing ? "Update quote" : "Add quote"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 }

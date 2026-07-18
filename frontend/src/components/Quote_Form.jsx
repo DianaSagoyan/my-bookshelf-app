@@ -35,11 +35,11 @@ export default function QuoteForm({ quote, onSuccess }) {
   );
 
   const handleChange = (e) => {
-    setForm(...form, { [e.target.name]: e.target.value });
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async () => {
-    if (!quote.text || !quote.book) {
+    if (!form.text || !form.book) {
       setError("Quote and the name of the book are required");
     }
 
@@ -60,7 +60,7 @@ export default function QuoteForm({ quote, onSuccess }) {
       });
 
       if (!res.ok) {
-        throw new error(
+        throw new Error(
           isEditing ? "Quote coudn't be uodated" : "Quote can't be created",
         );
       }
@@ -74,7 +74,7 @@ export default function QuoteForm({ quote, onSuccess }) {
   };
 
   const handleKeyDown = (e) => {
-    if ((e.key = "Enter")) handleSubmit();
+    if (e.key === "Enter") handleSubmit();
   };
 
   return (
@@ -84,7 +84,7 @@ export default function QuoteForm({ quote, onSuccess }) {
         {error && <p>{error}</p>}
         <div className="modal-input">
           <input
-            name="quote"
+            name="text"
             placeholder="Add quote"
             value={form.text}
             onChange={handleChange}
@@ -98,7 +98,7 @@ export default function QuoteForm({ quote, onSuccess }) {
             onKeyDown={handleKeyDown}
           />
           <input
-            name="Book"
+            name="book"
             placeholder="Book"
             value={form.book}
             onChange={handleChange}

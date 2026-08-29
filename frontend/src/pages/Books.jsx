@@ -2,11 +2,13 @@ import "../styles/styles.css";
 import "../styles/books.css";
 import Navbar from "../components/Navbar";
 import Form from "../components/Form";
+import QuoteForm from "../components/Quote_Form";
 
 import { useState, useEffect } from "react";
 
 function Books() {
   const [currentBook, setCurrentBook] = useState(null);
+  const [showQuoteForm, setShowQuoteForm] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -17,21 +19,6 @@ function Books() {
       .then((res) => res.json())
       .then((data) => setCurrentBook(data));
   }, []);
-
-  // const handleSubmit = async () => {
-  //   const token = localStorage.getItem("token");
-  //   const url = `${import.meta.env.VITE_API_URL}/quotes`;
-
-  //   try{
-  //     const res = await fetch(url, {
-  //       method: "POST",
-  //       Authorization: `Bearer ${token}`
-  //     },
-  //     body: JSON.stringify
-  //   )
-
-  //   }
-  // };
 
   return (
     <div>
@@ -46,9 +33,31 @@ function Books() {
                 {currentBook ? currentBook.title : "No Book currently Reading"}
               </p>
             </div>
-            <button className="add-quote-btn">Add Quote</button>
+            <button
+              className="add-quote-btn"
+              onClick={() => setShowQuoteForm(true)}
+            >
+              Add Quote
+            </button>
           </div>
         </div>
+
+        {showQuoteForm && currentBook && (
+          <div className="modal-overlay">
+            <div className="modal-box">
+              <button
+                className="modal-close"
+                onClick={() => setShowQuoteForm(false)}
+              >
+                X
+              </button>
+              <QuoteForm
+                bookId={currentBook.id}
+                onSuccess={() => setShowQuoteForm(false)}
+              />
+            </div>
+          </div>
+        )}
 
         <Form />
       </div>

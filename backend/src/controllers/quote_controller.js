@@ -42,7 +42,7 @@ export const addQuote = async (req, res) => {
       data: {
         text,
         page,
-        bookId,
+        bookId: parseInt(bookId),
       },
     });
 

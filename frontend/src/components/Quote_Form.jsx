@@ -59,6 +59,7 @@ export default function QuoteForm({ quote, bookId, onSuccess }) {
   const handleSubmit = async () => {
     if (!form.text) {
       setError("Quote text is required");
+      return;
     }
 
     if (!form.bookId) {
@@ -82,7 +83,7 @@ export default function QuoteForm({ quote, bookId, onSuccess }) {
         body: JSON.stringify({
           text: form.text,
           page: form.page ? parseInt(form.page) : null,
-          bookId: bookId,
+          bookId: parseInt(form.bookId),
         }),
       });
 
@@ -93,7 +94,7 @@ export default function QuoteForm({ quote, bookId, onSuccess }) {
       }
 
       const data = await res.json();
-      setForm(emptyForm);
+      setForm({ ...emptyForm, bookId: bookId || "" });
       if (onSuccess) onSuccess(data);
     } catch (err) {
       setError(err.message);

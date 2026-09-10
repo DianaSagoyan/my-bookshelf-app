@@ -22,7 +22,7 @@ export const register = async (req, res) => {
       data: { email, password: hashedPassword },
     });
 
-    console.log("User created:", user);
+    // console.log("User created:", user);
     const token = jwt.sign({ userId: user.id }, JWT_SECRET, {
       expiresIn: "7d",
     });

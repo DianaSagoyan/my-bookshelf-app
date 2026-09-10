@@ -1,3 +1,4 @@
+// import { error } from "node:console";
 import "../styles/lists.css";
 import { useState, useEffect } from "react";
 
@@ -14,6 +15,29 @@ export default function QuoteList() {
     };
     fetchQuotes();
   }, []);
+
+  const handleDelete = async (quoteId) => {
+    const token = localStorage.getItem("token");
+    try {
+      const res = await fetch(`http://localhost:5000/quotes/${quoteId}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!res.ok) throw new Error("Couldn't delete quote");
+      setQuotes((prev) => prev.filter((q) => q.id != quoteId));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  if (quotes.length === 0) {
+    return (
+      <p className="quote-list-empty">
+        No quotes yet — add one from a book's page.
+      </p>
+    );
+  }
+
   return (
     <ul className="quote-list">
       {quotes.map((quote) => (

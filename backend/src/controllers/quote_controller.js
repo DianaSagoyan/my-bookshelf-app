@@ -1,5 +1,6 @@
 import express from "express";
 import { prisma } from "../lib/prisma.js";
+import { error } from "node:console";
 
 export const getQuotes = async (req, res) => {
   try {
@@ -30,11 +31,18 @@ export const addQuote = async (req, res) => {
   try {
     const { text, page, bookId } = req.body;
 
+    const book = await prisma.book.findFirst({
+      where: { id: parseInt(bookId), userId: req.userId },
+    });
+    if (!book) {
+      return res.status(404).json({ error: "Book not found" });
+    }
+
     const quote = await prisma.quote.create({
       data: {
         text,
         page,
-        bookId,
+        bookId: parseInt(bookId),
       },
     });
 

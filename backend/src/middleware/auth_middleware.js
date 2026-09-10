@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { error } from "node:console";
+// import { error } from "node:console";
 
 const JWT_SECRET = process.env.JWT_SECRET;
 

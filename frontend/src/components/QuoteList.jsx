@@ -15,10 +15,19 @@ export default function QuoteList() {
     fetchQuotes();
   }, []);
   return (
-    <ul className="book-list">
+    <ul className="quote-list">
       {quotes.map((quote) => (
-        <li key={quote.id}>
-          {quote.text} - {quote.book.title}
+        <li key={quote.id} className="quote-card">
+          <span className="quote-card__spine" aria-hidden="true"></span>
+          <div className="quote-card__body">
+            <span className="quote-card__mark" aria-hidden="true"></span>
+            <p className="quote-card__text">{quote.text}</p>
+            <p className="quote-card__meta">
+              {quote.book?.title}
+              {quote.page ? `- p. ${quote.page}` : ""}
+            </p>
+          </div>
+          {/* {quote.text} - {quote.book.title} */}
         </li>
       ))}
     </ul>

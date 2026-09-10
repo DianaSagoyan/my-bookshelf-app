@@ -138,6 +138,45 @@
   font-size: 14px;
 }
 
+.quote-card__delete {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f1ea;
+  border: 1px solid #ded5c2;
+  border-radius: 3px;
+  color: #8c7f6b;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(-2px);
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.quote-card__delete svg {
+  width: 15px;
+  height: 15px;
+}
+
+.quote-card:hover .quote-card__delete,
+.quote-card__delete:focus-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.quote-card__delete:hover {
+  color: #a6402f;
+  border-color: #a6402f;
+}
+
 @media (max-width: 480px) {
   .quote-card {
     flex-direction: column;

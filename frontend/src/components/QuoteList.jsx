@@ -62,7 +62,9 @@ export default function QuoteList() {
                 <path d="M14 11v6" />
               </svg>
             </button>
-            <span className="quote-card__mark" aria-hidden="true"></span>
+            <span className="quote-card__mark" aria-hidden="true">
+              &ldquo;
+            </span>
             <p className="quote-card__text">{quote.text}</p>
             <p className="quote-card__meta">
               {quote.book?.title}

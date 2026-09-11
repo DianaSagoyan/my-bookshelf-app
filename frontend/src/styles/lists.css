@@ -83,15 +83,15 @@
 .quote-card {
   position: relative;
   display: flex;
-  background: #f3f1ea;
-  border: 1px solid #ded5c2;
-  border-radius: 3px;
+  background: white;
+  border: 0.5px solid #e0e0e0;
+  border-radius: 12px;
   overflow: hidden;
 }
 
 .quote-card__spine {
   flex-shrink: 0;
-  width: 8px;
+  width: 12px;
   background: #2d4a3e;
 }
 
@@ -164,6 +164,10 @@
 .quote-card__delete svg {
   width: 15px;
   height: 15px;
+}
+
+.quote-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .quote-card:hover .quote-card__delete,

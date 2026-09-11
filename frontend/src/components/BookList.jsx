@@ -7,9 +7,25 @@ export default function BookList({ books, mode, onStartReading }) {
   const navigate = useNavigate();
   const [selectedBook, setSelectedBook] = useState(null);
 
+  // Color mapping for genres
+  const genreColors = {
+    Fiction: "#FF7A45",
+    Psychology: "#4A4A4A",
+    "Science Fiction": "#FFA500",
+    "Self-Help": "#4ECDC4",
+    Technology: "#5A5A6A",
+    History: "#2196F3",
+    Motivation: "#8B9A6E",
+    Dystopian: "#8FA28A",
+  };
+
+  const getColorForGenre = (genre) => {
+    return genreColors[genre] || "#888888";
+  };
+
   return (
     <>
-      <ul className="book-list">
+      {/* <ul className="book-list">
         {books.map((book) => (
           <li key={book.id} className="book-list-item">
             <div>
@@ -42,7 +58,68 @@ export default function BookList({ books, mode, onStartReading }) {
             </div>
           </li>
         ))}
-      </ul>
+      </ul> */}
+
+      <div className="books-grid">
+        {books.map((book) => (
+          <div key={book.id} className="book-card">
+            <div
+              className="book-sidebar"
+              style={{ backgroundColor: getColorForGenre(book.genre) }}
+            >
+              <span className="book-sidebar-text">
+                {book.title.toUpperCase()}
+              </span>
+            </div>
+
+            <div className="book-content">
+              <div>
+                <h3 className="book-title">{book.title}</h3>
+                <p className="book-author">{book.author}</p>
+              </div>
+
+              <div className="book-meta">
+                <span className="meta-badge">{book.genre}</span>
+                {/* {book.dateFinished && (
+                  <span className="meta-badge">
+                    {new Date(book.dateFinished).getFullYear()}
+                  </span>
+                )} */}
+              </div>
+              {/* {book.notes && (
+                <p className="book-quote">"{book.notes}"</p>
+              )} */}
+
+              <div className="book-actions">
+                {mode === "read" && (
+                  <button
+                    className="action-btn"
+                    onClick={() => navigate(`/quotes/${book.id}`)}
+                  >
+                    Quotes
+                  </button>
+                )}
+
+                {mode === "toRead" && (
+                  <button
+                    className="action-btn"
+                    onClick={() => onStartReading(book.id)}
+                  >
+                    Start Reading
+                  </button>
+                )}
+
+                <button
+                  className="action-btn"
+                  onClick={() => setSelectedBook(book)}
+                >
+                  Update
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
 
       {selectedBook && (
         <div className="modal-overlay">

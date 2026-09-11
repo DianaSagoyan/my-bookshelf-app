@@ -1,6 +1,7 @@
 // import { error } from "node:console";
 import "../styles/lists.css";
 import { useState, useEffect } from "react";
+import { Trash2 } from "lucide-react";
 
 export default function QuoteList() {
   const [quotes, setQuotes] = useState([]);
@@ -49,7 +50,7 @@ export default function QuoteList() {
               onClick={() => handleDelete(quote.id)}
               aria-label="Delete quote"
             >
-              <svg
+              {/* <svg
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -60,7 +61,8 @@ export default function QuoteList() {
                 <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
                 <path d="M10 11v6" />
                 <path d="M14 11v6" />
-              </svg>
+              </svg> */}
+              <Trash2 />
             </button>
             <span className="quote-card__mark" aria-hidden="true">
               &ldquo;

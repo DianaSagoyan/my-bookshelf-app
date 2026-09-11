@@ -3,19 +3,22 @@ import "../styles/lists.css";
 import { useState, useEffect } from "react";
 import { Trash2 } from "lucide-react";
 
-export default function QuoteList() {
+export default function QuoteList({ bookId }) {
   const [quotes, setQuotes] = useState([]);
 
   useEffect(() => {
+    const url = bookId
+      ? `http://localhost:5000/quotes/${bookId}`
+      : `http://localhost:5000/quotes/`;
     const fetchQuotes = async () => {
-      const res = await fetch(`http://localhost:5000/quotes`, {
+      const res = await fetch(url, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       const data = await res.json();
       setQuotes(Array.isArray(data) ? data : []);
     };
     fetchQuotes();
-  }, []);
+  }, [bookId]);
 
   const handleDelete = async (quoteId) => {
     const token = localStorage.getItem("token");

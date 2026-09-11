@@ -15,8 +15,8 @@ export default function BookList({ books, mode, onStartReading }) {
     "Self-Help": "#4ECDC4",
     Technology: "#5A5A6A",
     History: "#2196F3",
-    Philosophy: "#FF6B6B",
-    Dystopian: "#4ECDC4",
+    Motivation: "#8B9A6E",
+    Dystopian: "#8FA28A",
   };
 
   const getColorForGenre = (genre) => {
@@ -67,7 +67,7 @@ export default function BookList({ books, mode, onStartReading }) {
               className="book-sidebar"
               style={{ backgroundColor: getColorForGenre(book.genre) }}
             >
-              <span className="book-sidebar0tex">
+              <span className="book-sidebar-text">
                 {book.title.toUpperCase()}
               </span>
             </div>
@@ -94,7 +94,7 @@ export default function BookList({ books, mode, onStartReading }) {
                 {mode === "read" && (
                   <button
                     className="action-btn"
-                    onCLick={() => navigate(`/quotes/${book.id}`)}
+                    onClick={() => navigate(`/quotes/${book.id}`)}
                   >
                     Quotes
                   </button>

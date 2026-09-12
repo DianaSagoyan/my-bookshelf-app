@@ -6,6 +6,7 @@ import Form from "./Form";
 export default function BookList({ books, mode, onStartReading }) {
   const navigate = useNavigate();
   const [selectedBook, setSelectedBook] = useState(null);
+  const [showForm, setShowForm] = useState(false);
 
   // Color mapping for genres
   const genreColors = {
@@ -21,6 +22,10 @@ export default function BookList({ books, mode, onStartReading }) {
 
   const getColorForGenre = (genre) => {
     return genreColors[genre] || "#888888";
+  };
+
+  const openBookForm = () => {
+    setShowForm(true);
   };
 
   return (
@@ -59,6 +64,12 @@ export default function BookList({ books, mode, onStartReading }) {
           </li>
         ))}
       </ul> */}
+
+      <div className="add-button-section">
+        <button className="add-book-section-btn" onClick={() => openBookForm()}>
+          Add Book
+        </button>
+      </div>
 
       <div className="books-grid">
         {books.map((book) => (
@@ -131,6 +142,17 @@ export default function BookList({ books, mode, onStartReading }) {
               X
             </button>
             <Form book={selectedBook} onSuccess={() => setSelectedBook(null)} />
+          </div>
+        </div>
+      )}
+
+      {showForm && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <button className="modal-close" onClick={() => setShowForm(false)}>
+              X
+            </button>
+            <Form book={selectedBook} onSuccess={() => setShowForm(false)} />
           </div>
         </div>
       )}

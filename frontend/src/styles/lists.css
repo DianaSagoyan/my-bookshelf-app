@@ -114,18 +114,18 @@
 
 .quote-card__text {
   position: relative;
-  font-family: "Lora", serif;
-  font-style: italic;
+  /* font-family: "Lora", serif; */
+  /* font-style: italic; */
   font-size: 17px;
   line-height: 1.55;
   color: #241f1a;
   margin: 0 0 12px;
-  max-width: 68ch;
+  /* max-width: 68ch; */
 }
 
 .quote-card__meta {
-  font-family: "Inter", sans-serif;
-  font-size: 13px;
+  /* font-family: "Inter", sans-serif; */
+  font-size: 14px;
   color: #8c7f6b;
   margin: 0;
   padding-top: 10px;
@@ -199,7 +199,26 @@
   gap: 1.5rem;
   padding: 0;
   list-style: none;
-  margin-top: 2rem;
+  margin-top: 9px;
+}
+
+.add-button-section {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.add-book-section-btn {
+  padding: 10px 20px;
+  border: 0.5px solid #666;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 7px;
+  margin-right: 9px;
+  color: #1f1f1f;
+}
+
+.add-book-section-btn:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Book Card */
@@ -259,7 +278,7 @@
   padding-left: 0;
 }
 
-/* Meta (genre, year) */
+/* Meta (genre) */
 .book-meta {
   display: flex;
   gap: 0.5rem;
@@ -278,7 +297,7 @@
 }
 
 /* Stars */
-.book-rating {
+/* .book-rating {
   display: flex;
   gap: 3px;
   margin-bottom: 0.75rem;
@@ -291,7 +310,7 @@
 
 .star-empty {
   color: #ccc;
-}
+} */
 
 /* Quote/Notes */
 .book-quote {

@@ -65,11 +65,11 @@ export default function BookList({ books, mode, onStartReading }) {
         ))}
       </ul> */}
 
-      <button className="add-book-btn" onClick={() => openBookForm()}>
-        Add Book
-      </button>
-
-      {/* {showForm && <Form />} */}
+      <div className="add-button-section">
+        <button className="add-book-section-btn" onClick={() => openBookForm()}>
+          Add Book
+        </button>
+      </div>
 
       <div className="books-grid">
         {books.map((book) => (

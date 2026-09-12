@@ -199,7 +199,26 @@
   gap: 1.5rem;
   padding: 0;
   list-style: none;
-  margin-top: 2rem;
+  margin-top: 9px;
+}
+
+.add-button-section {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.add-book-section-btn {
+  padding: 10px 20px;
+  border: 0.5px solid #666;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 7px;
+  margin-right: 9px;
+  color: #1f1f1f;
+}
+
+.add-book-section-btn:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Book Card */

@@ -2,9 +2,11 @@
 import "../styles/lists.css";
 import { useState, useEffect } from "react";
 import { Trash2 } from "lucide-react";
+import QuoteForm from "./Quote_Form";
 
 export default function QuoteList({ bookId }) {
   const [quotes, setQuotes] = useState([]);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     const url = bookId
@@ -42,10 +44,19 @@ export default function QuoteList({ bookId }) {
     );
   }
 
+  const handleShowForm = () => {
+    setShowForm(true);
+  };
+
   return (
     <>
       <div className="add-quote-button-section">
-        <button className="add-quote-section-btn">Add Quote</button>
+        <button
+          className="add-quote-section-btn"
+          onClick={() => handleShowForm()}
+        >
+          Add Quote
+        </button>
       </div>
       <ul className="quote-list">
         {quotes.map((quote) => (
@@ -84,6 +95,17 @@ export default function QuoteList({ bookId }) {
           </li>
         ))}
       </ul>
+
+      {showForm && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <button className="modal-close" onClick={() => setShowForm(false)}>
+              X
+            </button>
+            <QuoteForm bookId={bookId} onSuccess={() => setShowForm(false)} />
+          </div>
+        </div>
+      )}
     </>
   );
 }

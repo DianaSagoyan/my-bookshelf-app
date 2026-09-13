@@ -43,17 +43,21 @@ export default function QuoteList({ bookId }) {
   }
 
   return (
-    <ul className="quote-list">
-      {quotes.map((quote) => (
-        <li key={quote.id} className="quote-card">
-          <span className="quote-card__spine" aria-hidden="true"></span>
-          <div className="quote-card__body">
-            <button
-              className="quote-card__delete"
-              onClick={() => handleDelete(quote.id)}
-              aria-label="Delete quote"
-            >
-              {/* <svg
+    <>
+      <div className="add-quote-button-section">
+        <button className="add-quote-section-btn">Add Quote</button>
+      </div>
+      <ul className="quote-list">
+        {quotes.map((quote) => (
+          <li key={quote.id} className="quote-card">
+            <span className="quote-card__spine" aria-hidden="true"></span>
+            <div className="quote-card__body">
+              <button
+                className="quote-card__delete"
+                onClick={() => handleDelete(quote.id)}
+                aria-label="Delete quote"
+              >
+                {/* <svg
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -65,20 +69,21 @@ export default function QuoteList({ bookId }) {
                 <path d="M10 11v6" />
                 <path d="M14 11v6" />
               </svg> */}
-              <Trash2 />
-            </button>
-            <span className="quote-card__mark" aria-hidden="true">
-              &ldquo;
-            </span>
-            <p className="quote-card__text">{quote.text}</p>
-            <p className="quote-card__meta">
-              {quote.book?.title}
-              {quote.page ? `- p. ${quote.page}` : ""}
-            </p>
-          </div>
-          {/* {quote.text} - {quote.book.title} */}
-        </li>
-      ))}
-    </ul>
+                <Trash2 />
+              </button>
+              <span className="quote-card__mark" aria-hidden="true">
+                &ldquo;
+              </span>
+              <p className="quote-card__text">{quote.text}</p>
+              <p className="quote-card__meta">
+                {quote.book?.title}
+                {quote.page ? `- p. ${quote.page}` : ""}
+              </p>
+            </div>
+            {/* {quote.text} - {quote.book.title} */}
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }

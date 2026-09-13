@@ -202,12 +202,14 @@
   margin-top: 9px;
 }
 
-.add-button-section {
+.add-button-section,
+.add-quote-button-section {
   display: flex;
   justify-content: flex-end;
 }
 
-.add-book-section-btn {
+.add-book-section-btn,
+.add-quote-section-btn {
   padding: 10px 20px;
   border: 0.5px solid #666;
   border-radius: 10px;
@@ -217,7 +219,8 @@
   color: #1f1f1f;
 }
 
-.add-book-section-btn:hover {
+.add-book-section-btn:hover,
+.add-quote-section-btn:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 

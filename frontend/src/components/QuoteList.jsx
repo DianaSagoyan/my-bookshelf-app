@@ -2,9 +2,11 @@
 import "../styles/lists.css";
 import { useState, useEffect } from "react";
 import { Trash2 } from "lucide-react";
+import QuoteForm from "./Quote_Form";
 
 export default function QuoteList({ bookId }) {
   const [quotes, setQuotes] = useState([]);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     const url = bookId
@@ -42,18 +44,31 @@ export default function QuoteList({ bookId }) {
     );
   }
 
+  const handleShowForm = () => {
+    setShowForm(true);
+  };
+
   return (
-    <ul className="quote-list">
-      {quotes.map((quote) => (
-        <li key={quote.id} className="quote-card">
-          <span className="quote-card__spine" aria-hidden="true"></span>
-          <div className="quote-card__body">
-            <button
-              className="quote-card__delete"
-              onClick={() => handleDelete(quote.id)}
-              aria-label="Delete quote"
-            >
-              {/* <svg
+    <>
+      <div className="add-quote-button-section">
+        <button
+          className="add-quote-section-btn"
+          onClick={() => handleShowForm()}
+        >
+          Add Quote
+        </button>
+      </div>
+      <ul className="quote-list">
+        {quotes.map((quote) => (
+          <li key={quote.id} className="quote-card">
+            <span className="quote-card__spine" aria-hidden="true"></span>
+            <div className="quote-card__body">
+              <button
+                className="quote-card__delete"
+                onClick={() => handleDelete(quote.id)}
+                aria-label="Delete quote"
+              >
+                {/* <svg
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -65,20 +80,32 @@ export default function QuoteList({ bookId }) {
                 <path d="M10 11v6" />
                 <path d="M14 11v6" />
               </svg> */}
-              <Trash2 />
+                <Trash2 />
+              </button>
+              <span className="quote-card__mark" aria-hidden="true">
+                &ldquo;
+              </span>
+              <p className="quote-card__text">{quote.text}</p>
+              <p className="quote-card__meta">
+                {quote.book?.title}
+                {quote.page ? `- p. ${quote.page}` : ""}
+              </p>
+            </div>
+            {/* {quote.text} - {quote.book.title} */}
+          </li>
+        ))}
+      </ul>
+
+      {showForm && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <button className="modal-close" onClick={() => setShowForm(false)}>
+              X
             </button>
-            <span className="quote-card__mark" aria-hidden="true">
-              &ldquo;
-            </span>
-            <p className="quote-card__text">{quote.text}</p>
-            <p className="quote-card__meta">
-              {quote.book?.title}
-              {quote.page ? `- p. ${quote.page}` : ""}
-            </p>
+            <QuoteForm bookId={bookId} onSuccess={() => setShowForm(false)} />
           </div>
-          {/* {quote.text} - {quote.book.title} */}
-        </li>
-      ))}
-    </ul>
+        </div>
+      )}
+    </>
   );
 }

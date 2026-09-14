@@ -316,11 +316,10 @@
 } */
 
 /* Quote/Notes */
-.book-quote {
+.book-description {
   font-size: 13px;
   color: #666;
   margin: 0 0 auto 0;
-  font-style: italic;
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 2;

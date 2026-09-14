@@ -30,41 +30,6 @@ export default function BookList({ books, mode, onStartReading }) {
 
   return (
     <>
-      {/* <ul className="book-list">
-        {books.map((book) => (
-          <li key={book.id} className="book-list-item">
-            <div>
-              <span className="book-title">{book.title}</span>
-              <span className="book-author">{book.author}</span>
-            </div>
-            <div className="book-actions">
-              {mode === "read" && (
-                <button
-                  className="book-quotes-btn"
-                  onClick={() => navigate(`/quotes/${book.id}`)}
-                >
-                  Quotes
-                </button>
-              )}
-              {mode === "toRead" && (
-                <button
-                  className="book-quotes-btn"
-                  onClick={() => onStartReading(book.id)}
-                >
-                  Start Reading
-                </button>
-              )}
-              <button
-                className="book-quotes-btn"
-                onClick={() => setSelectedBook(book)}
-              >
-                Update
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul> */}
-
       <div className="add-button-section">
         <button className="add-book-section-btn" onClick={() => openBookForm()}>
           Add Book
@@ -97,9 +62,9 @@ export default function BookList({ books, mode, onStartReading }) {
                   </span>
                 )} */}
               </div>
-              {/* {book.notes && (
-                <p className="book-quote">"{book.notes}"</p>
-              )} */}
+              {book.description && (
+                <p className="book-description">"{book.description}"</p>
+              )}
 
               <div className="book-actions">
                 {mode === "read" && (

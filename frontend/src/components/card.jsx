@@ -1,11 +1,8 @@
-export default function Card() {
+export default function Card({ title, description }) {
   return (
     <div class="card">
-      <h3>Lorem Ipsum</h3>
-      <p>
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna
-      </p>
+      <h3>{title}</h3>
+      <p>{description}</p>
     </div>
   );
 }

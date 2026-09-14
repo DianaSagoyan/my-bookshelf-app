@@ -2,6 +2,12 @@ import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const navigate = useNavigate();
+
+  const handleLogOut = () =>{
+    localStorage.removeItem("token");
+    navigate("/", {replace:true});
+  }
+
   return (
     <>
       <div className="nav">
@@ -34,7 +40,7 @@ export default function Navbar() {
             </button>
           </li> */}
           <li>
-            <button className="btn-sign-out" onClick={() => navigate("/")}>
+            <button className="btn-sign-out" onClick={handleLogOut}>
               Sign out
             </button>
           </li>

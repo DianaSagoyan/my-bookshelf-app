@@ -3,7 +3,7 @@ import "../styles/lists.css";
 import { useState } from "react";
 import Form from "./Form";
 
-export default function BookList({ books, mode, onStartReading }) {
+export default function BookList({ books, mode, onStartReading, onBookAdded }) {
   const navigate = useNavigate();
   const [selectedBook, setSelectedBook] = useState(null);
   const [showForm, setShowForm] = useState(false);
@@ -66,11 +66,7 @@ export default function BookList({ books, mode, onStartReading }) {
 
               <div className="book-meta">
                 <span className="meta-badge">{book.genre}</span>
-                {/* {book.dateFinished && (
-                  <span className="meta-badge">
-                    {new Date(book.dateFinished).getFullYear()}
-                  </span>
-                )} */}
+            
               </div>
               {book.description && (
                 <p className="book-description">"{book.description}"</p>
@@ -116,7 +112,7 @@ export default function BookList({ books, mode, onStartReading }) {
             >
               X
             </button>
-            <Form book={selectedBook} onSuccess={() => setSelectedBook(null)} />
+            <Form book={selectedBook} onSuccess={(book) => {setSelectedBook(null); onBookAdded(newBook)}} />
           </div>
         </div>
       )}
@@ -127,7 +123,7 @@ export default function BookList({ books, mode, onStartReading }) {
             <button className="modal-close" onClick={() => setShowForm(false)}>
               X
             </button>
-            <Form book={selectedBook} onSuccess={() => setShowForm(false)} />
+            <Form book={selectedBook} onSuccess={(newBook) => {setShowForm(false); onBookAdded(newBook)}} />
           </div>
         </div>
       )}

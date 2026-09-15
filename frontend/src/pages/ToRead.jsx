@@ -1,5 +1,5 @@
 import BookList from "../components/BookList";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/navbar";
 import { useState, useEffect } from "react";
 import "../styles/styles.css";
 
@@ -20,6 +20,12 @@ export default function ToRead() {
       setBooks((prev) => prev.filter((book) => book.id !== id));
     }
   };
+
+  const handleBookAdded = (newBook) => {
+    setBooks(prev => {
+      const exists = prev.some(b => b.id === newBook.id);
+      return exists ? prev.map(b=> b.id === newBook.id ? newBook : b):[...prev, newBook]})
+  }
 
   useEffect(() => {
     const fetchWantToRead = async () => {
@@ -42,6 +48,7 @@ export default function ToRead() {
         books={books}
         mode="toRead"
         onStartReading={handleStartReading}
+        onBookAdded={handleBookAdded}
       />
     </div>
   );

@@ -1,6 +1,6 @@
 import "../styles/styles.css";
 import "../styles/books.css";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/navbar";
 import Form from "../components/Form";
 import QuoteForm from "../components/Quote_Form";
 

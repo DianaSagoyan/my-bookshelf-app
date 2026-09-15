@@ -1,4 +1,4 @@
-import Navbar from "../components/Navbar";
+import Navbar from "../components/navbar";
 import "../styles/styles.css";
 import QuoteList from "../components/QuoteList";
 import { useParams } from "react-router-dom";

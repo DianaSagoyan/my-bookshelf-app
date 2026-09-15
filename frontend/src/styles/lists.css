@@ -202,6 +202,35 @@
   margin-top: 9px;
 }
 
+.add-button-section{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.book-search {
+  flex: 1;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: #241F1A;
+  padding: 10px 14px;
+  /* background: #F3F1EA; */
+  border: 1px solid #DED5C2;
+  border-radius: 7px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+
+.book-search:focus {
+  border-color: #a88c6f;
+  box-shadow: 0 0 0 3px rgba(116, 92, 66, 0.12);
+}
+
 .add-button-section,
 .add-quote-button-section {
   display: flex;
@@ -214,7 +243,7 @@
   border: 0.5px solid #666;
   border-radius: 10px;
   cursor: pointer;
-  margin-top: 7px;
+  /* margin-top: 7px; */
   margin-right: 9px;
   color: #1f1f1f;
 }

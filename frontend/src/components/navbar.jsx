@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 export default function Navbar() {
   const navigate = useNavigate();
 
-  const handleLogOut = () =>{
+  const handleLogOut = () => {
     localStorage.removeItem("token");
-    navigate("/", {replace:true});
-  }
+    navigate("/", { replace: true });
+  };
 
   return (
     <>

@@ -7,6 +7,7 @@ export default function BookList({ books, mode, onStartReading }) {
   const navigate = useNavigate();
   const [selectedBook, setSelectedBook] = useState(null);
   const [showForm, setShowForm] = useState(false);
+  const [search, setSearch] = useState("");
 
   // Color mapping for genres
   const genreColors = {
@@ -28,16 +29,25 @@ export default function BookList({ books, mode, onStartReading }) {
     setShowForm(true);
   };
 
+  const filteredBooks = books.filter((book) => {
+    const query = search.toLowerCase();
+    return (
+      book.title.toLowerCase().includes(query) ||
+      book.author.toLowerCase().includes(query)
+    );
+  });
+
   return (
     <>
       <div className="add-button-section">
+        <input type="text" className="book-search" placeholder="Search by title or author" value={search} onChange={e=>setSearch(e.target.value)}/>
         <button className="add-book-section-btn" onClick={() => openBookForm()}>
           Add Book
         </button>
       </div>
 
       <div className="books-grid">
-        {books.map((book) => (
+        {filteredBooks.map((book) => (
           <div key={book.id} className="book-card">
             <div
               className="book-sidebar"

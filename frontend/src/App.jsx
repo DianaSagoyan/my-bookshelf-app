@@ -16,12 +16,46 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-
-        <Route path="/books" element={<ProtectedRoute><Books /> </ProtectedRoute>} />
-        <Route path="/quotes" element={<ProtectedRoute><Quotes /></ProtectedRoute>} />
-        <Route path="/quotes/:bookId" element={<ProtectedRoute><Quotes /></ProtectedRoute>} />
-        <Route path="/read" element={<ProtectedRoute><ReadBooks /></ProtectedRoute>} />
-        <Route path="/want-to-read" element={<ProtectedRoute><ToRead /></ProtectedRoute>} />
+        <Route
+          path="/books"
+          element={
+            <ProtectedRoute>
+              <Books />{" "}
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/quotes"
+          element={
+            <ProtectedRoute>
+              <Quotes />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/quotes/:bookId"
+          element={
+            <ProtectedRoute>
+              <Quotes />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/read"
+          element={
+            <ProtectedRoute>
+              <ReadBooks />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/want-to-read"
+          element={
+            <ProtectedRoute>
+              <ToRead />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

@@ -36,18 +36,41 @@ export default function QuoteList({ bookId }) {
     }
   };
 
-  if (quotes.length === 0) {
-    return (
-      <p className="quote-list-empty">
-        No quotes yet — add one from a book's page.
-      </p>
-    );
-  }
-
   const handleShowForm = () => {
     setShowForm(true);
   };
 
+  if (quotes.length === 0) {
+    return (
+      <>
+        <div className="add-quote-button-section">
+        <button className="add-quote-section-btn" onClick={handleShowForm}>
+          Add Quote
+        </button>
+      </div>
+      <p className="quote-list-empty">
+        No quotes yet — add one from a book's page.
+      </p>
+      {showForm && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <button className="modal-close" onClick={() => setShowForm(false)}>
+              X
+            </button>
+            <QuoteForm
+              bookId={bookId}
+              onSuccess={(newQuote) => {
+                setShowForm(false);
+                setQuotes((prev) => [...prev, newQuote]);
+              }}
+            />
+          </div>
+        </div>
+      )}
+      </>
+    );
+  }
+  
   return (
     <>
       <div className="add-quote-button-section">
@@ -68,18 +91,6 @@ export default function QuoteList({ bookId }) {
                 onClick={() => handleDelete(quote.id)}
                 aria-label="Delete quote"
               >
-                {/* <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path d="M3 6h18" />
-                <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-                <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
-                <path d="M10 11v6" />
-                <path d="M14 11v6" />
-              </svg> */}
                 <Trash2 />
               </button>
               <span className="quote-card__mark" aria-hidden="true">
@@ -102,7 +113,13 @@ export default function QuoteList({ bookId }) {
             <button className="modal-close" onClick={() => setShowForm(false)}>
               X
             </button>
-            <QuoteForm bookId={bookId} onSuccess={() => setShowForm(false)} />
+            <QuoteForm bookId={bookId} onSuccess={(newQuote) =>{ setShowForm(false);
+            setQuotes(prev => {
+              const exists = prev.some(q => q.id === newQuote.id);
+              return exists ? 
+              prev.map(q => (q.id === newQuote.id ? newQuote : q)) : [...prev, newQuote]
+            });
+            }} />
           </div>
         </div>
       )}

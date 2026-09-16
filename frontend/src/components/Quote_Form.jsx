@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const emptyForm = {
-  quote: "",
+  text: "",
   page: "",
   bookId: "",
 };
@@ -136,14 +136,6 @@ export default function QuoteForm({ quote, bookId, onSuccess }) {
               ))}
             </select>
           )}
-
-          {/* <input
-            name="book"
-            placeholder="Book"
-            value={form.book}
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-          /> */}
 
           <button className="add-book-btn" onClick={() => handleSubmit()}>
             {isEditing ? "Update quote" : "Add quote"}

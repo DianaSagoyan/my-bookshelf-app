@@ -333,7 +333,7 @@
 }
 
 /* Stars */
-/* .book-rating {
+.star-rating {
   display: flex;
   gap: 3px;
   margin-bottom: 0.75rem;
@@ -346,7 +346,11 @@
 
 .star-empty {
   color: #ccc;
-} */
+}
+
+.star-rating .star:hover {
+  transform: scale(1.1);
+}
 
 /* Quote/Notes */
 .book-description {

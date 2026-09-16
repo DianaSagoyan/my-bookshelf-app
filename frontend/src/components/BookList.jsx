@@ -112,7 +112,7 @@ export default function BookList({ books, mode, onStartReading, onBookAdded }) {
             >
               X
             </button>
-            <Form book={selectedBook} onSuccess={(book) => {setSelectedBook(null); onBookAdded(newBook)}} />
+            <Form book={selectedBook} onSuccess={(book) => {setSelectedBook(null); onBookAdded(book)}} />
           </div>
         </div>
       )}
@@ -123,7 +123,7 @@ export default function BookList({ books, mode, onStartReading, onBookAdded }) {
             <button className="modal-close" onClick={() => setShowForm(false)}>
               X
             </button>
-            <Form book={selectedBook} onSuccess={(newBook) => {setShowForm(false); onBookAdded(newBook)}} />
+            <Form book={null} onSuccess={(newBook) => {setShowForm(false); onBookAdded(newBook)}} />
           </div>
         </div>
       )}

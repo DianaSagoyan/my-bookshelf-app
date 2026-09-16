@@ -27,7 +27,7 @@ export const getBook = async (req, res) => {
 
 export const createBook = async (req, res) => {
   try {
-    const { title, author, genre, description, status, userId } = req.body;
+    const { title, author, genre, description, status, userId, rating } = req.body;
 
     const book = await prisma.book.create({
       data: {
@@ -36,6 +36,7 @@ export const createBook = async (req, res) => {
         genre,
         description,
         status,
+        rating,
         userId: req.userId,
       },
     });
@@ -52,7 +53,7 @@ export const updateBook = async (req, res) => {
 
     const book = await prisma.book.update({
       where: { id: parseInt(id) },
-      data: { title, author, genre, description, status },
+      data: { title, author, genre, description, status, rating },
     });
 
     res.status(200).json(book);

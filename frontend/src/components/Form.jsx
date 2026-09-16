@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import StarRating from "./StarRatings";
 
 const emptyForm = {
   title: "",
@@ -6,6 +7,7 @@ const emptyForm = {
   genre: "",
   description: "",
   status: "WANT_TO_READ",
+  rating: 0
 };
 
 export default function Form({ book, onSuccess }) {
@@ -18,6 +20,7 @@ export default function Form({ book, onSuccess }) {
           genre: book.genre || "",
           description: book.description || "",
           status: book.status || "WANT_TO_READ",
+          rating: book.rating || 0
         }
       : emptyForm,
   );
@@ -33,6 +36,7 @@ export default function Form({ book, onSuccess }) {
             genre: book.genre || "",
             description: book.description || "",
             status: book.status || "WANT_TO_READ",
+            rating: book.rating || 0
           }
         : emptyForm,
     );
@@ -60,7 +64,7 @@ export default function Form({ book, onSuccess }) {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(form),
+        body: JSON.stringify({...form, rating: form.rating ? form.rating : null}),
       });
 
       if (!res.ok)
@@ -118,6 +122,17 @@ export default function Form({ book, onSuccess }) {
             <option value="READING">Reading</option>
             <option value="READ">Read</option>
           </select>
+
+          <div className="rating-field">
+            <label>Rating</label>
+            <StarRating
+              value={form.rating}
+              onChange={(star) =>
+              setForm({ ...form, rating: star === form.rating ? 0 : star })
+              }
+            />
+          </div>
+
           <button className="add-book-btn" onClick={() => handleSubmit()}>
             {isEditing ? "Update" : "Add Book"}
           </button>

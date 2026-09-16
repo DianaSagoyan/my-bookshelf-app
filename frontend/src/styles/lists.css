@@ -231,6 +231,10 @@
   box-shadow: 0 0 0 3px rgba(116, 92, 66, 0.12);
 }
 
+.add-quote-section-btn{
+  margin-top: 7px;
+}
+
 .add-button-section,
 .add-quote-button-section {
   display: flex;

@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/lists.css";
 import { useState } from "react";
 import Form from "./Form";
+import StarRating from "./StarRatings";
 
 export default function BookList({ books, mode, onStartReading, onBookAdded }) {
   const navigate = useNavigate();
@@ -66,7 +67,7 @@ export default function BookList({ books, mode, onStartReading, onBookAdded }) {
 
               <div className="book-meta">
                 <span className="meta-badge">{book.genre}</span>
-            
+                {book.rating > 0 && <StarRating value={book.rating} readOnly />}
               </div>
               {book.description && (
                 <p className="book-description">"{book.description}"</p>
@@ -112,7 +113,7 @@ export default function BookList({ books, mode, onStartReading, onBookAdded }) {
             >
               X
             </button>
-            <Form book={selectedBook} onSuccess={(book) => {setSelectedBook(null); onBookAdded(newBook)}} />
+            <Form book={selectedBook} showRating={mode === "read"} onSuccess={(book) => {setSelectedBook(null); onBookAdded(book)}} />
           </div>
         </div>
       )}
@@ -123,7 +124,7 @@ export default function BookList({ books, mode, onStartReading, onBookAdded }) {
             <button className="modal-close" onClick={() => setShowForm(false)}>
               X
             </button>
-            <Form book={selectedBook} onSuccess={(newBook) => {setShowForm(false); onBookAdded(newBook)}} />
+            <Form book={null} showRating={mode === "read"} onSuccess={(newBook) => {setShowForm(false); onBookAdded(newBook)}} />
           </div>
         </div>
       )}

@@ -10,7 +10,7 @@ const emptyForm = {
   rating: 0
 };
 
-export default function Form({ book, onSuccess }) {
+export default function Form({ book, onSuccess, showRating = false }) {
   const [error, setError] = useState(null);
   const [form, setForm] = useState(
     book
@@ -123,15 +123,18 @@ export default function Form({ book, onSuccess }) {
             <option value="READ">Read</option>
           </select>
 
-          <div className="rating-field">
-            <label>Rating</label>
-            <StarRating
-              value={form.rating}
-              onChange={(star) =>
-              setForm({ ...form, rating: star === form.rating ? 0 : star })
-              }
-            />
-          </div>
+          {showRating && (
+             <div className="rating-field">
+             <label>Rating</label>
+             <StarRating
+               value={form.rating}
+               onChange={(star) =>
+               setForm({ ...form, rating: star === form.rating ? 0 : star })
+               }
+             />
+           </div>
+          )}
+         
 
           <button className="add-book-btn" onClick={() => handleSubmit()}>
             {isEditing ? "Update" : "Add Book"}

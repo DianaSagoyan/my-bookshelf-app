@@ -6,6 +6,15 @@ import "../styles/styles.css";
 export default function ReadBooks() {
   const [books, setBooks] = useState([]);
 
+  const handleBookAdded = (book) => {
+    setBooks((prev) => {
+      const exists = prev.some((b) => b.id === book.id);
+      return exists
+        ? prev.map((b) => (b.id === book.id ? book : b))
+        : [...prev, book];
+    });
+  };
+
   useEffect(() => {
     const fetchReadBooks = async () => {
       const res = await fetch("http://localhost:5000/books/read", {
@@ -23,7 +32,7 @@ export default function ReadBooks() {
   return (
     <div>
       <Navbar />
-      <BookList books={books} mode="read" />
+      <BookList books={books} mode="read" onBookAdded={handleBookAdded} />
     </div>
   );
 }

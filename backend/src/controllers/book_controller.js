@@ -49,7 +49,7 @@ export const createBook = async (req, res) => {
 export const updateBook = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, author, genre, description, status } = req.body;
+    const { title, author, genre, description, status, rating } = req.body;
 
     const book = await prisma.book.update({
       where: { id: parseInt(id) },
@@ -58,6 +58,7 @@ export const updateBook = async (req, res) => {
 
     res.status(200).json(book);
   } catch (error) {
+    console.log(error)
     res.status(500).json({ error: "Something went wrong" });
   }
 };

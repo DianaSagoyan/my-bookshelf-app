@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/lists.css";
 import { useState } from "react";
 import Form from "./Form";
+import StarRating from "./StarRatings";
 
 export default function BookList({ books, mode, onStartReading, onBookAdded }) {
   const navigate = useNavigate();
@@ -66,7 +67,7 @@ export default function BookList({ books, mode, onStartReading, onBookAdded }) {
 
               <div className="book-meta">
                 <span className="meta-badge">{book.genre}</span>
-            
+                {book.rating > 0 && <StarRating value={book.rating} readOnly />}
               </div>
               {book.description && (
                 <p className="book-description">"{book.description}"</p>

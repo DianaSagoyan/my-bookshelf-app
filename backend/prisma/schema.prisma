@@ -39,7 +39,7 @@ model Quote{
   text String
   page Int?
   bookId Int
-  book Book @relation(fields: [bookId], references: [id])
+  book Book @relation(fields: [bookId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
 }
 

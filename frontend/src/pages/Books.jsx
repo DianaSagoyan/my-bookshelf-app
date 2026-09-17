@@ -9,6 +9,28 @@ import { useState, useEffect } from "react";
 function Books() {
   const [currentBook, setCurrentBook] = useState(null);
   const [showQuoteForm, setShowQuoteForm] = useState(false);
+  const [error, setError] = useState(null)
+
+  const handleFinishedReading = async(id) =>{
+      const res = await fetch(`http://localhost:5000/books/${id}`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify({status: "READ"})
+      })
+
+      const data = await res.json().catch(() => {});
+
+      if(!res.ok){
+        setError(data.error || "Couldn't mark book as Read")
+        return
+      }
+
+      setError(null);
+      setCurrentBook(null);
+  }
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -26,21 +48,33 @@ function Books() {
 
       <div className="container">
         <div className="currently_reading">
-          <h2 className="current-book-header">Currently Reading</h2>
+          <h2 className="current-book-header">{currentBook? "Currently Reading" : ""}</h2>
           <div className="current-book-box">
             <div className="current-book">
               <p>
                 {currentBook ? currentBook.title : "No Book currently Reading"}
               </p>
             </div>
-            <button
-              className="add-quote-btn"
-              onClick={() => setShowQuoteForm(true)}
-            >
-              Add Quote
-            </button>
+            {currentBook && (
+        <>
+          <button
+            className="add-quote-btn"
+            onClick={() => setShowQuoteForm(true)}
+          >
+            Add Quote
+          </button>
+          <button
+            className="finish-reading-btn"
+            onClick={() => handleFinishedReading(currentBook.id)}
+          >
+            Finished Reading
+          </button>
+        </>
+      )}
           </div>
         </div>
+
+        {error && <p className="error-message">{error}</p>}
 
         {showQuoteForm && currentBook && (
           <div className="modal-overlay">

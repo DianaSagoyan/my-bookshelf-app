@@ -177,8 +177,9 @@
 }
 
 .quote-card__delete:hover {
-  color: #a6402f;
-  border-color: #a6402f;
+    color: #d9534f;
+    background-color: rgba(217, 83, 79, 0.1);
+  
 }
 
 @media (max-width: 480px) {
@@ -263,12 +264,39 @@
   border: 0.5px solid #e0e0e0;
   border-radius: 12px;
   display: flex;
-  overflow: hidden;
+  /* overflow: hidden; */
   transition: box-shadow 0.2s ease;
+  position: relative;
 }
 
 .book-card:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.book-card__delete{
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.book-card__delete:hover {
+  color: #d9534f;
+  background-color: rgba(217, 83, 79, 0.1);
+}
+
+.book-card__delete svg {
+  width: 18px;
+  height: 18px;
 }
 
 /* Sidebar */

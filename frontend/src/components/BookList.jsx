@@ -3,8 +3,9 @@ import "../styles/lists.css";
 import { useState } from "react";
 import Form from "./Form";
 import StarRating from "./StarRatings";
+import { Trash2 } from "lucide-react";
 
-export default function BookList({ books, mode, onStartReading, onBookAdded, loadingId }) {
+export default function BookList({ books, mode, onStartReading, onBookAdded, onBookDeleted, loadingId }) {
   const navigate = useNavigate();
   const [selectedBook, setSelectedBook] = useState(null);
   const [showForm, setShowForm] = useState(false);
@@ -38,6 +39,20 @@ export default function BookList({ books, mode, onStartReading, onBookAdded, loa
     );
   });
 
+  const handleDelete = async (quoteId) => {
+    const token = localStorage.getItem("token");
+    try {
+      const res = await fetch(`http://localhost:5000/books/${id}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!res.ok) throw new Error("Couldn't delete book");
+      onBookDeleted(id);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <>
       <div className="add-button-section">
@@ -64,6 +79,14 @@ export default function BookList({ books, mode, onStartReading, onBookAdded, loa
                 <h3 className="book-title">{book.title}</h3>
                 <p className="book-author">{book.author}</p>
               </div>
+
+              <button
+                className="book-card__delete"
+                onClick={() => handleDelete(book.id)}
+                aria-label="Delete book"
+              >
+                <Trash2 />
+              </button>
 
               <div className="book-meta">
                 <span className="meta-badge">{book.genre}</span>

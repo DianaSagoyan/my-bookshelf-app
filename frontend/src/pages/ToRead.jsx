@@ -3,7 +3,7 @@ import Navbar from "../components/navbar";
 import { useState, useEffect } from "react";
 import "../styles/styles.css";
 
-export default function ToRead() {
+export default function ToRead(onBookDeleted) {
   const [books, setBooks] = useState([]);
   const [error, setError] = useState(null)
   const [loadingId, setLoadingId] = useState(null);
@@ -39,6 +39,10 @@ export default function ToRead() {
       return exists ? prev.map(b=> b.id === newBook.id ? newBook : b):[...prev, newBook]})
   }
 
+  const handleBookDeleted = (id) => {
+    setBooks((prev) => prev.filter((b) => b.id !== id));
+  };
+
   useEffect(() => {
     const fetchWantToRead = async () => {
       const res = await fetch("http://localhost:5000/books/want-to-read", {
@@ -62,6 +66,7 @@ export default function ToRead() {
         mode="toRead"
         onStartReading={handleStartReading}
         onBookAdded={handleBookAdded}
+        onBookDeleted={handleBookDeleted}
         loadingId={loadingId}
       />
     </div>

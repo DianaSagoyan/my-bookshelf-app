@@ -66,9 +66,10 @@ export default function Form({ book, onSuccess, showRating = false }) {
         },
         body: JSON.stringify({...form, rating: form.rating ? form.rating : null}),
       });
+    
+      const data = await res.json().catch(() => ({}))
 
       if (!res.ok){
-        const data = await res.json().catch(() => ({}))
         throw new Error(
           data.error || (isEditing ? "Failed to update the book" : "Failed to add the book"),
         );

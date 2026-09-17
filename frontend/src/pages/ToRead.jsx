@@ -5,9 +5,13 @@ import "../styles/styles.css";
 
 export default function ToRead() {
   const [books, setBooks] = useState([]);
+  const [error, setError] = useState(null)
+  const [loadingId, setLoadingId] = useState(null);
 
   const handleStartReading = async (id) => {
-    const res = await fetch(`http://localhost:5000/books/${id}`, {
+    setLoadingId(id)
+    try {
+      const res = await fetch(`http://localhost:5000/books/${id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",
@@ -16,9 +20,17 @@ export default function ToRead() {
       body: JSON.stringify({ status: "READING" }),
     });
 
-    if (res.ok) {
-      setBooks((prev) => prev.filter((book) => book.id !== id));
+    const data = await res.json().catch(() => {})
+
+    if (!res.ok) {
+      setError(data.error || "Couldn't start reading this book");
+      return;
     }
+    setError(null);
+    setBooks((prev) => prev.filter((book) => book.id !== id));
+  } finally {
+    setLoadingId(null)
+  }
   };
 
   const handleBookAdded = (newBook) => {
@@ -44,11 +56,13 @@ export default function ToRead() {
   return (
     <div>
       <Navbar />
+      {error && <p className="error-message">{error}</p>}
       <BookList
         books={books}
         mode="toRead"
         onStartReading={handleStartReading}
         onBookAdded={handleBookAdded}
+        loadingId={loadingId}
       />
     </div>
   );

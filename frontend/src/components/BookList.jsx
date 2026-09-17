@@ -4,7 +4,7 @@ import { useState } from "react";
 import Form from "./Form";
 import StarRating from "./StarRatings";
 
-export default function BookList({ books, mode, onStartReading, onBookAdded }) {
+export default function BookList({ books, mode, onStartReading, onBookAdded, loadingId }) {
   const navigate = useNavigate();
   const [selectedBook, setSelectedBook] = useState(null);
   const [showForm, setShowForm] = useState(false);
@@ -86,9 +86,10 @@ export default function BookList({ books, mode, onStartReading, onBookAdded }) {
                 {mode === "toRead" && (
                   <button
                     className="action-btn"
+                    disabled={loadingId===book.id}
                     onClick={() => onStartReading(book.id)}
                   >
-                    Start Reading
+                    {loadingId===book.id ? "Starting..." : "Start Reading"}
                   </button>
                 )}
 

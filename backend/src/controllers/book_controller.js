@@ -112,6 +112,8 @@ export const getCurrentlyReading = async (req, res) => {
   }
 };
 
+
+
 export const getReadBooks = async (req, res) => {
   try {
     const books = await prisma.book.findMany({

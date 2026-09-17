@@ -139,7 +139,7 @@ select {
 }
 
 .add-book-btn,
-.add-quote-btn {
+.add-quote-btn, .finish-reading-btn {
   width: 130px;
   padding: 7px;
   margin: 10px;
@@ -147,19 +147,29 @@ select {
   border: none;
   cursor: pointer;
   background-color: #fff;
-  font-size: 16px;
+  font-size: 14px;
   color: #2c3930;
   transition: transform 0.3s ease;
+  white-space: nowrap;
 }
 
 .add-quote-btn {
   z-index: 1;
   position: absolute;
   bottom: 20px;
+  left: 10px;
+}
+
+.finish-reading-btn{
+  z-index: 1;
+  position: absolute;
+  bottom: 20px;
+  right: 10px;
 }
 
 .add-book-btn:hover,
-.add-quote-btn:hover {
+.add-quote-btn:hover,
+.finish-reading-btn:hover {
   transform: scale(1.1);
 }
 

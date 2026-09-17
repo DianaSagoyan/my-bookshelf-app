@@ -39,7 +39,7 @@ export default function BookList({ books, mode, onStartReading, onBookAdded, onB
     );
   });
 
-  const handleDelete = async (quoteId) => {
+  const handleDelete = async (id) => {
     const token = localStorage.getItem("token");
     try {
       const res = await fetch(`http://localhost:5000/books/${id}`, {

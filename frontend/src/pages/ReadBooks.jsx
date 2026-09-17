@@ -15,6 +15,10 @@ export default function ReadBooks() {
     });
   };
 
+  const handleBookDeleted = (id) => {
+    setBooks((prev) => prev.filter((b) => b.id !== id));
+  };
+
   useEffect(() => {
     const fetchReadBooks = async () => {
       const res = await fetch("http://localhost:5000/books/read", {
@@ -32,7 +36,7 @@ export default function ReadBooks() {
   return (
     <div>
       <Navbar />
-      <BookList books={books} mode="read" onBookAdded={handleBookAdded} />
+      <BookList books={books} mode="read" onBookAdded={handleBookAdded} onBookDeleted={handleBookDeleted}/>
     </div>
   );
 }

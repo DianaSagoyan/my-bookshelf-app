@@ -3,7 +3,7 @@ import Navbar from "../components/navbar";
 import { useState, useEffect } from "react";
 import "../styles/styles.css";
 
-export default function ToRead(onBookDeleted) {
+export default function ToRead() {
   const [books, setBooks] = useState([]);
   const [error, setError] = useState(null)
   const [loadingId, setLoadingId] = useState(null);

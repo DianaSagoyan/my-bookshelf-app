@@ -21,7 +21,7 @@ export default function ReadBooks() {
 
   useEffect(() => {
     const fetchReadBooks = async () => {
-      const res = await fetch("http://localhost:5000/books/read", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/books/read`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

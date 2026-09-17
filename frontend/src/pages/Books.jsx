@@ -12,7 +12,7 @@ function Books() {
   const [error, setError] = useState(null)
 
   const handleFinishedReading = async(id) =>{
-      const res = await fetch(`http://localhost:5000/books/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/books/${id}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

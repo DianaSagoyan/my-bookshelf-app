@@ -11,7 +11,7 @@ export default function ToRead() {
   const handleStartReading = async (id) => {
     setLoadingId(id)
     try {
-      const res = await fetch(`http://localhost:5000/books/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/books/${id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",
@@ -45,7 +45,7 @@ export default function ToRead() {
 
   useEffect(() => {
     const fetchWantToRead = async () => {
-      const res = await fetch("http://localhost:5000/books/want-to-read", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/books/want-to-read`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

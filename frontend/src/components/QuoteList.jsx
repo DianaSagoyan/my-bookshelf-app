@@ -10,8 +10,8 @@ export default function QuoteList({ bookId }) {
 
   useEffect(() => {
     const url = bookId
-      ? `http://localhost:5000/quotes/${bookId}`
-      : `http://localhost:5000/quotes/`;
+      ? `${import.meta.env.VITE_API_URL}/quotes/${bookId}`
+      : `${import.meta.env.VITE_API_URL}/quotes/`;
     const fetchQuotes = async () => {
       const res = await fetch(url, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -25,7 +25,7 @@ export default function QuoteList({ bookId }) {
   const handleDelete = async (quoteId) => {
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch(`http://localhost:5000/quotes/${quoteId}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/quotes/${quoteId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -102,7 +102,6 @@ export default function QuoteList({ bookId }) {
                 {quote.page ? `- p. ${quote.page}` : ""}
               </p>
             </div>
-            {/* {quote.text} - {quote.book.title} */}
           </li>
         ))}
       </ul>

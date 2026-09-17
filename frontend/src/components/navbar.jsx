@@ -34,11 +34,6 @@ export default function Navbar() {
               To Read
             </button>
           </li>
-          {/* <li>
-            <button className="btn-login" onClick={() => navigate("/login")}>
-              My Goal
-            </button>
-          </li> */}
           <li>
             <button className="btn-sign-out" onClick={handleLogOut}>
               Sign out

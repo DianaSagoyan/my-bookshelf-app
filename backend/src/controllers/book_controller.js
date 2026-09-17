@@ -1,4 +1,5 @@
 // import express from "express";
+import { error } from "node:console";
 import { prisma } from "../lib/prisma.ts";
 // import { error } from "node:console";
 
@@ -29,6 +30,18 @@ export const createBook = async (req, res) => {
   try {
     const { title, author, genre, description, status, userId, rating } = req.body;
 
+    if(status === "READING"){
+      const existing = await prisma.book.findFirst({
+        where: {userId: req.userId, status: "Reading"}
+      });
+
+      if(existing){
+        return res.status(409).json({
+          error: "You already have a book marked as currently reading"
+        })
+      }
+    }
+
     const book = await prisma.book.create({
       data: {
         title,
@@ -50,6 +63,15 @@ export const updateBook = async (req, res) => {
   try {
     const { id } = req.params;
     const { title, author, genre, description, status, rating } = req.body;
+
+    if(status === "READING"){
+      const existing = await prisma.book.findFirst({
+        where: {userId: req.userId, status: "READING", id: {not: parseInt(id)}}
+      })
+      if(existing){
+        res.status(409).json({error: "You already have a book marked as currently reading."})
+      }
+    }
 
     const book = await prisma.book.update({
       where: { id: parseInt(id) },

@@ -1,5 +1,5 @@
 import "../styles/styles.css";
-import Intro from "../components/Intro";
+import Intro from "../components/intro";
 import BookImages from "../components/Book-images";
 import Card from "../components/Card";
 import Footer from "../components/Footer";
